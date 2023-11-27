@@ -67,7 +67,11 @@ export const GlobalStyle = createGlobalStyle`
         text-decoration: none;
         color: #fff;
     }
-    
+    .ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
    
     /* @media screen and (max-width: 900px){
         html body{
