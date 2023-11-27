@@ -6,7 +6,7 @@ import { up, down } from '../../utils/svgManage';
 const MyReactPaginate = styled(ReactPaginate) <{ justify: string }>`
   display: flex;
   flex-direction: row;
-  justify-content:${({ justify }) => justify};
+  justify-content:${({ justify }) => justify || 'flex-end'};
   color: #fff;
   gap: 12px;
   font-size: 14px;
@@ -26,8 +26,9 @@ const MyReactPaginate = styled(ReactPaginate) <{ justify: string }>`
   }
 
   a {
+    
     box-sizing: border-box;
-    display: inline-block;
+    display: flex;
     text-decoration: none;
     cursor: pointer;
     width: 28px;
@@ -36,6 +37,10 @@ const MyReactPaginate = styled(ReactPaginate) <{ justify: string }>`
     text-align: center;
     line-height: 28px;
     border-radius: 14px;
+    span {
+      display: flex;
+      align-items: center;
+    }
   }
 
   .selected {

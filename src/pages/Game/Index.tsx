@@ -8,6 +8,8 @@ import { TgSvgIcon, XSvgIcon, RdSvgIcon, iosIcon, androidIcon, appleIcon, webIco
 import axios from 'axios';
 import Paginate from '../../Components/Paginate';
 import test from './test.png'
+import Toggle from '../../Components/Toggle/Toggle';
+import { useTheme } from 'styled-components';
 interface IResponseData<T> {
   code: number,
   data?: T,
@@ -52,7 +54,7 @@ interface GameList {
 }
 
 export default function GameIndex() {
-
+  const theme = useTheme();
   const [data, setData] = useState<GameList[]>()
   const [total, setTotal] = useState<number>(0)
   const [page, setPage] = useState<number>(1)
@@ -121,12 +123,13 @@ export default function GameIndex() {
         {
           data?.map((item) => {
             return <CardDetails key={item.id}>
-              <div style={{position: 'relative',width: '645px', height: '476px'}}>
-                <div style={{position: 'absolute', top: '32px', left: 0}}>
+              <div className='img_bg'>
+                <div className='sign'>
                   <img src={test} alt='' />
                 </div>
                 <img width={'100%'} height={'100%'} src={item.logoUrl} alt='' />
               </div>
+
               <div>
                 <div className='name ellipsis'>{item.name}</div>
                 <div className='partner'>
@@ -176,13 +179,15 @@ export default function GameIndex() {
           total={total || 0}
           pageSize={pageSize}
           page={page}
-          justify="end"
+          justify="flex-end"
           onPageChanged={(e) => { console.log(e); setPage(e); }}
         />
 </div>
 
       </Content>
-      <BottomBG />
+      <Toggle vIf={!theme.isH5}>
+        <BottomBG />
+      </Toggle>
       <Footer />
     </GameWrap>
   )
