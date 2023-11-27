@@ -231,3 +231,12 @@ export const down = `
   <path d="M4.62191 12.9737C4.77598 12.9737 4.93146 12.915 5.04911 12.7975L10.4809 7.37066C10.7162 7.13562 10.7162 6.75369 10.4809 6.51865C10.2456 6.28362 9.86318 6.28362 9.62786 6.51865L4.19471 11.9455C3.9594 12.1805 3.9594 12.5624 4.19471 12.7975C4.31236 12.915 4.46644 12.9737 4.62191 12.9737Z" fill="white"/>
 </svg>
 `
+
+export const menuSvgIcon = `
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="21" viewBox="0 0 24 21" fill="none">
+  <rect width="24" height="3" rx="1.5" fill="#D9D9D9"/>
+  <rect x="6" y="9" width="18" height="3" rx="1.5" fill="#D9D9D9"/>
+  <rect y="18" width="24" height="3" rx="1.5" fill="#D9D9D9"/>
+</svg>
+`
+

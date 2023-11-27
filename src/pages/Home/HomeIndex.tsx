@@ -31,6 +31,7 @@ import ORDI from './ORDI.svg'
 import GALA from './GALA.png'
 import OKX from './OKX.png'
 import AXLE1 from './AXLE.png'
+import Toggle from '../../Components/Toggle/Toggle';
 
 export default function HomeIndex() {
 
@@ -48,7 +49,7 @@ export default function HomeIndex() {
   };
 
   return (
-    <div>
+    <div style={{background: '#000'}}>
       <HeaderNav />
       <About id="about">
         <ContentBox>
@@ -78,7 +79,10 @@ export default function HomeIndex() {
             <Title>
               What is <span>Rabbitgames</span>?
             </Title>
-            <img src={rabbit_icon} alt='' />
+            <Toggle vIf={theme.isH5}>
+              <img width={'240px'} height={'43px'} src={rabbit_icon} alt='' />
+              <img src={rabbit_icon} alt='' />
+            </Toggle>
 
             <div className='text'>
              <div>
