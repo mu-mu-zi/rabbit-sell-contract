@@ -21,10 +21,11 @@ interface IProps {
 }
 
 const Dropdown = styled(SemiDropdown)`
-  min-width: 174px;
+  /* min-width: 174px; */
   background-color: #161616 !important;
   border-radius: 8px !important;
   border: 1px solid #FF9231;
+  /* padding: 0 10px; */
   margin-top: 16px;
 `;
 
@@ -33,8 +34,8 @@ const Menu = styled.div`
   flex-direction: column;
   
 
-  gap: 12px;
-  padding: 12px 22px;
+  gap: 10px;
+  padding: 5px 10px;
   .title {
     margin-bottom: 8px;
     font-weight: 500;
@@ -50,13 +51,16 @@ const Option = styled.div`
   font-weight: 400;
   font-size: 14px;
   color: #fff;
+  min-width: 100px;
+  height: 23px;
   cursor: pointer;
   &:hover {
     color: ${({ theme }) => theme.colors.primary};
   }
   &.selected {
     color: ${({ theme }) => theme.colors.primary};
-
+    background: #2F2F2F;
+    border-radius: 2px;
   }
 `;
 
@@ -74,11 +78,9 @@ const Hover = styled.div`
   }
   &.selected {
     color: #FF9231;
-
   }
   .selected {
     color: #FF9231;
-
   }
 `;
 

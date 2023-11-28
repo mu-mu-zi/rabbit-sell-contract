@@ -44,7 +44,7 @@ export default function HomeIndex() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 2022200,
     arrows: false,
   };
 
@@ -142,7 +142,9 @@ export default function HomeIndex() {
               <img src={distributionPng} />
 
               <div className='text_box'>
+                <div className='line_left' />
                 Rabbit is a diversified gaming platform that provides a rich and diverse gaming experience and innovative gameplay to meet the entertainment needs of a large audience of players
+                <div className='line_right' />
               </div>
             </div>
           </DistributionFlex>

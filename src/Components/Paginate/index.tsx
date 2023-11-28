@@ -35,6 +35,7 @@ const MyReactPaginate = styled(ReactPaginate) <{ justify: string }>`
     height: 28px;
     user-select: none;
     text-align: center;
+    justify-content: center;
     line-height: 28px;
     border-radius: 14px;
     span {

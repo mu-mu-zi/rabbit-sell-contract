@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import topBg from "../../assets/img/game/game_top_bg.png"
+import topBgH5 from "../../assets/img/game/game_top_bg_h5.png"
 
 export const GameWrap = styled.div`
   display: flex;
@@ -44,6 +45,7 @@ export const GameTopBG = styled.div`
   min-height: 186px;
   ${({ theme }) => theme.mediaWidth.sm`
   min-height: 106px;
+  background: url(${topBgH5}) no-repeat;
   `}
 `
 
@@ -57,7 +59,7 @@ export const Title = styled.div`
   }
   ${({ theme }) => theme.mediaWidth.sm`
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 17px;
   `}
 `
@@ -118,6 +120,17 @@ export const CardDetails = styled.div`
       margin-top: 7px;
     `}
   }
+  .hiddenText {
+    color: #FF9231;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    ${({ theme }) => theme.mediaWidth.sm`
+      font-size: 10px;
+      font-weight: 500;
+      margin-top: 7px;
+    `}
+  }
   .info {
     display: flex;
     flex-direction: column;
@@ -166,7 +179,7 @@ export const CardDetails = styled.div`
   `}
   }
   }
-  .sign {
+  .signRow {
     display: flex;
     align-items: center;
     gap: 30px;
@@ -174,11 +187,23 @@ export const CardDetails = styled.div`
     ${({ theme }) => theme.mediaWidth.sm`
       gap: 12px;
     `}
-  span,svg {
+  span, svg {
     ${({ theme }) => theme.mediaWidth.sm`
       width: 15px;
       height: 15px;
   `}
   }
   }
+`
+
+export const MarkdownContainer = styled.span<{
+  expand: boolean
+}>`
+  color: rgba(0, 0, 0, .5);
+  display: -webkit-box;
+  -webkit-line-clamp: ${(props) => props.expand ? `none` : 2};
+  overflow: hidden;
+  word-break: break-all;
+  word-wrap: break-word;
+  -webkit-box-orient: vertical;
 `

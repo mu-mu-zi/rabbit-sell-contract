@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Footer from '../../Components/Footer';
 import HeaderNav from '../../Components/Heder';
-import { CardDetails, Content, GameTopBG, GameWrap, Title } from './Index.styled';
+import { CardDetails, Content, GameTopBG, GameWrap, MarkdownContainer, Title } from './Index.styled';
 import { BottomBG } from '../Home/HomeIndex.styled';
 import aaaa from './aaaa.png'
 import { TgSvgIcon, XSvgIcon, RdSvgIcon, iosIcon, androidIcon, appleIcon, webIcon, windowsIcon } from '../../utils/svgManage';
 import axios from 'axios';
 import Paginate from '../../Components/Paginate';
-import test from './test.png'
+import h5PtoSign from './h5PtoSign.png'
+import PtoSign from './PtoSign.png'
 import Toggle from '../../Components/Toggle/Toggle';
 import { useTheme } from 'styled-components';
 interface IResponseData<T> {
@@ -59,7 +60,9 @@ export default function GameIndex() {
   const [total, setTotal] = useState<number>(0)
   const [page, setPage] = useState<number>(1)
   const [pageSize, setPageSize] = useState<number>(3)
-
+  // 两行收缩
+  const [descriptionExpand, setDescriptionExpand] = useState(false)
+  const [expandBtnHidden, setExpandBtnHidden] = useState(true)
 
   const getGameList = async () => {
 
@@ -125,7 +128,7 @@ export default function GameIndex() {
             return <CardDetails key={item.id}>
               <div className='img_bg'>
                 <div className='sign'>
-                  <img src={test} alt='' />
+                  <img src={theme.isH5 ? h5PtoSign : PtoSign} alt='' />
                 </div>
                 <img width={'100%'} height={'100%'} src={item.logoUrl} alt='' />
               </div>
@@ -139,9 +142,31 @@ export default function GameIndex() {
                     })
                   }
                 </div>
-                <div className='describe'>
-                  {item.content}
-                </div>
+                <MarkdownContainer ref={(e) => {
+                  if (!e) return
+                  if (e.offsetHeight < e.scrollHeight || e.offsetWidth < e.scrollWidth) {
+                    setExpandBtnHidden(false)
+                  } else {
+                    if (descriptionExpand) {
+                      setExpandBtnHidden(false)
+                    } else {
+                      setExpandBtnHidden(true)
+                    }
+                  }
+                }} expand={descriptionExpand}>
+                  <div className='describe'>
+                    {item.content}
+                  </div>
+                </MarkdownContainer>
+                <Toggle vIf={!expandBtnHidden}>
+                  <div className='hiddenText' onClick={() => { setDescriptionExpand(!descriptionExpand) }}>
+                    {
+                      descriptionExpand
+                        ? 'Retract'
+                        : 'More'
+                    }
+                  </div>
+                </Toggle>
 
                 <div className='info'>
                   <div className='flex-info'>
@@ -162,7 +187,7 @@ export default function GameIndex() {
                   </div>
                 </div>
 
-                <div className='sign'>
+                <div className='signRow'>
                   {
                     item.devices.map((_i) => {
                       return <span dangerouslySetInnerHTML={{ __html: getNameImg(_i.deviceName) || '' }} />

@@ -4,5 +4,5 @@ export type Colors = {
 }
 
 export const baseColor: Colors = {
-  primary: '#F2BA2D',
+  primary: '#FF9231',
 };

@@ -13,9 +13,8 @@ export const GlobalStyle = createGlobalStyle`
            min-width: 375px;
         `}
     }
-    
     html body,button,input,code{
-        font-family: Saira Condensed, Sair, PingFang SC, Microsoft YaHei, SourceHanSerifCN-Medium, robotoregular, Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, Helvetica, Arial, monospace, serif;
+        font-family: Inter Saira Condensed, Sair, PingFang SC, Microsoft YaHei, SourceHanSerifCN-Medium, robotoregular, Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, Helvetica, Arial, monospace, serif;
     }
     body{
         font-size: 13px;

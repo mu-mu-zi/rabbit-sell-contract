@@ -32,7 +32,7 @@ export const NavTop = styled(Layer)`
   height: 80px;
   ${({ theme }) => theme.mediaWidth.sm`
     height: 40px;
-    padding: 0 20px;
+    padding: 0 10px;
   `}
 `
 
@@ -93,8 +93,8 @@ export const RightUl = styled.div`
 
 export const ConnectWalletButton = styled.div`
   display: flex;
-  width: 138px;
   height: 28px;
+  padding: 0 20px;
   justify-content: center;
   align-items: center;
   border-radius: 100px;
@@ -105,7 +105,7 @@ export const ConnectWalletButton = styled.div`
   cursor: pointer;
   ${({ theme }) => theme.mediaWidth.sm`
     font-size: 6.5px;
-    width: 69px;
+    padding: 0 8px;
     border-radius: 50px;
     height: 14px;
 `}
@@ -246,7 +246,7 @@ export const Title = styled.div`
   }
   ${({ theme }) => theme.mediaWidth.sm`
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 800;
   `}
 `
 
@@ -319,7 +319,6 @@ export const DistributionFlex = styled.div`
     img {
       ${({ theme }) => theme.mediaWidth.sm`
         width: 100%;
-        height: 222px;
       `}
     }
   }
@@ -331,13 +330,11 @@ export const DistributionFlex = styled.div`
     font-size: 24px;
     font-weight: 500;
     ${({ theme }) => theme.mediaWidth.sm`
-    
       gap: 5px;
       color: #FFF;
       font-size: 17px;
       font-weight: 400;
-      margin: 45px 20px;
-
+      margin: 45px 20px 26px 10px;
     `}
     img {
       ${({ theme }) => theme.mediaWidth.sm`
@@ -347,6 +344,7 @@ export const DistributionFlex = styled.div`
       }
     }
     .text_box {
+      position: relative;
       background: rgba(35, 33, 33, 0.60);
       max-width: 675px;
       padding: 45px 28px 55px 55px;
@@ -356,12 +354,29 @@ export const DistributionFlex = styled.div`
       ${({ theme }) => theme.mediaWidth.sm`
         max-width: 100%;
         background: rgba(35, 33, 33, 0.60);
-        padding: 17px 12px 16px 23px;
+        padding: 17px 11px 12px 19px;
         color: #A3968C;
         font-size: 14px;
         font-weight: 500;
-        margin-right: 20px;
         `
+      }
+      .line_left {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 1px;
+        height: 100%;
+        background-image: linear-gradient(to bottom, #FF923100, #FF9231, #FF923100); 
+      }
+      .line_right {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 1px;
+        height: 100%;
+        background-image: linear-gradient(to bottom, #FF923100, #FF9231, #FF923100); 
       }
     }
     span svg {
@@ -456,6 +471,7 @@ export const StoryLine = styled.div`
     grid-template-columns: 1fr 50px 1fr;
     .icons {
         text-align: center;
+        z-index: 1;
       }
     .content {
       display: flex;
@@ -465,12 +481,18 @@ export const StoryLine = styled.div`
         color: #FF9231;
         font-size: 18px;
         font-weight: 600;
+        ${({ theme }) => theme.mediaWidth.sm`
+          font-size: 13px;
+        `}
       }
     
       .text {
         color: #A3968C;
         font-size: 14px;
         font-weight: 300;
+        ${({ theme }) => theme.mediaWidth.sm`
+          font-size: 11px;
+        `}
       }
     }
     .content-left {
@@ -482,12 +504,19 @@ export const StoryLine = styled.div`
         color: #FF9231;
         font-size: 18px;
         font-weight: 600;
+        text-align: right;
+        ${({ theme }) => theme.mediaWidth.sm`
+          font-size: 13px;
+        `}
       }
       .text {
         color: #A3968C;
         font-size: 14px;
         font-weight: 300;
         text-align: right;
+        ${({ theme }) => theme.mediaWidth.sm`
+          font-size: 11px;
+        `}
       }
     }
   }
@@ -527,7 +556,6 @@ export const VisionColumn = styled.div`
   img {
     ${({ theme }) => theme.mediaWidth.sm`
       width: 100%;  
-      height: 160px;
     `}
   }
 `
@@ -588,7 +616,7 @@ export const MissionColumn = styled.div`
       padding: 12px;
       color: #FFF;
       font-size: 12px;
-      width: 240px;
+      width: 248.5px;
     `}
   }
 `
@@ -601,7 +629,7 @@ export const PartnerColumn = styled.div`
   padding: 0 223px;
   ${({ theme }) => theme.mediaWidth.sm`
   gap: 23px;
-  padding: 0 38px;
+  padding: 0 35px;
 `}
   .flex-row {
     display: flex;
