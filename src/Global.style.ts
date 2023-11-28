@@ -71,7 +71,9 @@ export const GlobalStyle = createGlobalStyle`
   overflow: hidden;
   text-overflow: ellipsis;
 }
-   
+.semi-notification-list {
+    margin-top: 60px;
+}
     /* @media screen and (max-width: 900px){
         html body{
             min-width: 375px;

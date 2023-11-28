@@ -42,6 +42,7 @@ export const LogoGroup = styled.div`
   gap: 9px;
   color: #FFF;
   font-size: 13px;
+  font-family: "Lemon";
   ${({ theme }) => theme.mediaWidth.sm`
   gap: 5px;
 
@@ -103,6 +104,11 @@ export const ConnectWalletButton = styled.div`
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
+  .address {
+    display: flex;
+    max-width: 200px;
+    gap: 10px;
+  }
   ${({ theme }) => theme.mediaWidth.sm`
     font-size: 6.5px;
     padding: 0 8px;

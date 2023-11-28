@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavWrap, NavTop, LogoGroup, RightUl, UlHref, ButtonGrounp, ConnectWalletButton } from '../pages/Home/HomeIndex.styled';
 import theme from '../theme';
-import { TgSvgIcon, XSvgIcon, menuSvgIcon } from '../utils/svgManage';
+import { TgSvgIcon, XSvgIcon, menuDownSvgIcon, menuSvgIcon } from '../utils/svgManage';
 import { useTheme } from 'styled-components';
 import logo from '../assets/img/logo.png'
 import RouterLink from './RouterLink';
 import DropdownMenu from './DropdownMenu';
 import Toggle from './Toggle/Toggle';
+import Notice from './Notification';
+import Flex from './Box/Flex';
 
 export enum SessionStorageKey {
   WalletAuthorized = "WALLET_AUTHORIZED",
@@ -26,15 +28,15 @@ export default function HeaderNav() {
       let unisat = (window as any).unisat;
 
       for (let i = 1; i < 10 && !unisat; i += 1) {
-          await new Promise((resolve) => setTimeout(resolve, 100*i));
-          unisat = (window as any).unisat;
+        await new Promise((resolve) => setTimeout(resolve, 100 * i));
+        unisat = (window as any).unisat;
       }
       console.log(unisat)
-      if(unisat){
-          setUnisatInstalled(true);
-      }else if (!unisat)
-      setUnisatInstalled(false);
-          return;
+      if (unisat) {
+        setUnisatInstalled(true);
+      } else if (!unisat)
+        setUnisatInstalled(false);
+      return;
 
       // unisat.getAccounts().then((accounts: string[]) => {
       //     handleAccountsChanged(accounts);
@@ -53,8 +55,7 @@ export default function HeaderNav() {
   }, []);
   // 退出连接
   const disConnect = async () => {
-    if(localStorage.getItem(SessionStorageKey.WalletAuthorized) && !!accounts.length) {
-      unisat.disconnect()
+    if (localStorage.getItem(SessionStorageKey.WalletAuthorized) && !!accounts.length) {
       setAddress('')
       setAccounts([])
       localStorage.removeItem(SessionStorageKey.WalletAuthorized)
@@ -62,21 +63,27 @@ export default function HeaderNav() {
   }
   // 刷新重连
   useEffect(() => {
-    if(localStorage.getItem(SessionStorageKey.WalletAuthorized)) {
+    if (localStorage.getItem(SessionStorageKey.WalletAuthorized)) {
       connect()
     }
   }, [localStorage.getItem(SessionStorageKey.WalletAuthorized)])
   // 连接
   const connect = async () => {
-    const result = await unisat.requestAccounts();
-    handleAccountsChanged(result);
+    try {
+      const result = await unisat.requestAccounts();
+      handleAccountsChanged(result);
+    } catch (e: any) {
+      Notice.Error({
+        title: e.message || 'error'
+      })
+    }
   }
   // 储存新账号
   const selfRef = useRef<{ accounts: string[] }>({
     accounts: [],
   });
   const self = selfRef.current;
-  const handleAccountsChanged = (_accounts: string[]) => {
+  const handleAccountsChanged = async (_accounts: string[]) => {
     if (self.accounts[0] === _accounts[0] && localStorage.getItem(SessionStorageKey.WalletAuthorized)) {
       // prevent from triggering twice
       return;
@@ -86,7 +93,7 @@ export default function HeaderNav() {
       setAccounts(_accounts);
       localStorage.setItem(SessionStorageKey.WalletAuthorized, _accounts[0])
       setAddress(_accounts[0]);
-
+      // setAddress(address);
       // getBasicInfo();
     } else {
       localStorage.setItem(SessionStorageKey.WalletAuthorized, '')
@@ -123,65 +130,86 @@ export default function HeaderNav() {
           <a href={'https://t.me/Rabbitgames_org'} target='_blank' dangerouslySetInnerHTML={{ __html: TgSvgIcon || '' }} rel="noreferrer" />
           <a href={'https://twitter.com/Rait_io'} target='_blank' dangerouslySetInnerHTML={{ __html: XSvgIcon || '' }} rel="noreferrer" />
           <Toggle vIf={!accounts.length}>
-          <ConnectWalletButton 
-            onClick={async () => {
-              if(!unisatInstalled) {
-                window.open("https://unisat.io")
-                return;
+            <ConnectWalletButton
+              onClick={async () => {
+                if (!unisatInstalled) {
+                  window.open("https://unisat.io")
+                  return;
+                }
+                console.log(unisat)
+                connect()
+
+              }}
+            >
+              {
+                unisatInstalled
+                  ? 'Connect Unisat Wallet'
+                  : 'Install Unisat Wallet'
               }
-              console.log(unisat)
-              const result = await unisat.requestAccounts();
-              handleAccountsChanged(result);
 
-            }}
-          >
-            {
-              unisatInstalled 
-              ? 'Connect Unisat Wallet'
-              : 'Install Unisat Wallet'
-            }
-            
-          </ConnectWalletButton>
-          <ConnectWalletButton 
-            onClick={async () => {
-              disConnect()
-
-            }}
-          >
-            Disconnect Wallet
-          </ConnectWalletButton>
+            </ConnectWalletButton>
+            <DropdownMenu
+              title=""
+              columns={[
+                {
+                  label: 'Logout',
+                  to: '/',
+                  render: (text: string) => {
+                    return <Flex
+                      justifyContent="center"
+                      width="100%"
+                      cursor="pointer"
+                      onClick={async () => {
+                        disConnect()
+                      }}
+                    >
+                      {text}
+                    </Flex>
+                  }
+                }
+              ]}
+            >
+              <ConnectWalletButton>
+                <div className='address'>
+                  <span>
+                    {address.replace(address.substring(5, 38), '...')}
+                  </span>
+                  <span dangerouslySetInnerHTML={{ __html: menuDownSvgIcon || '' }} rel="noreferrer" />
+                </div>
+              </ConnectWalletButton>
+            </DropdownMenu>
           </Toggle>
           <Toggle vIf={theme.isH5}>
-          <DropdownMenu
-            columns={[
-              {
-                label: 'About',
-                to: '/',
-              },
-              {
-                label: 'Game',
-                to: '/game',
-              },
-              {
-                label: 'Airdrop',
-                to: '/Airdrop',
-                render: () => {
-                  return <span style={{ pointerEvents: 'none', color: '#686868' }}>Airdrop</span>
-                }
-              },
-              {
-                label: 'Under Development',
-                to: '/Development',
-                render: () => {
-                  return <span style={{ pointerEvents: 'none', color: '#686868' }}>Under Development</span>
-                }
-              },
-            ]}
-            title=""
-          >
+            <DropdownMenu
+              columns={[
+                {
+                  label: 'About',
+                  to: '/',
+                },
+                {
+                  label: 'Game',
+                  to: '/game',
+                },
+                {
+                  label: 'Airdrop',
+                  to: '/Airdrop',
+                  render: () => {
+                    return <span style={{ pointerEvents: 'none', color: '#686868' }}>Airdrop</span>
+                  }
+                },
+                {
+                  label: 'Under Development',
+                  to: '/Development',
+                  render: () => {
+                    return <span style={{ pointerEvents: 'none', color: '#686868' }}>Under Development</span>
+                  }
+                },
+              ]}
+              title=""
+            >
 
-          <span dangerouslySetInnerHTML={{ __html: menuSvgIcon || '' }} rel="noreferrer" />
-          </DropdownMenu>
+              <span dangerouslySetInnerHTML={{ __html: menuSvgIcon || '' }} rel="noreferrer" />
+            </DropdownMenu>
           </Toggle>
         </ButtonGrounp>
 
