@@ -2,7 +2,7 @@ import React from 'react';
 import {
   About, ButtonGrounp, ConnectWalletButton, ContentBox,
   Game, LightningNetwork, LogoGroup, NavTop,
-  NavWrap, RightUl, UlHref, Vision, AboutFlex, LightningNetworkColumn, Title, VisionColumn, SignButton, VisionBox, GameBox, Distribution, DistributionFlex, DistributionButton, Roadmap, RoadmapColumn, StoryLine, Mission, MissionColumn, PartnerColumn, Partner, BottomBG
+  NavWrap, RightUl, UlHref, Vision, AboutFlex, LightningNetworkColumn, Title, VisionColumn, SignButton, VisionBox, GameBox, Distribution, DistributionFlex, DistributionButton, Roadmap, RoadmapColumn, StoryLine, Mission, MissionColumn, PartnerColumn, Partner, BottomBG, PartnerButton
 } from './HomeIndex.styled';
 import logo from '../../assets/img/logo.png'
 import { TgSvgIcon, XSvgIcon, RdSvgIcon, LineIcon, AXLE, BINAIcon, BTCIcon, ETHIcon, GALAIcon, OKXIcon, ORDIIcon } from '../../utils/svgManage';
@@ -31,7 +31,19 @@ import ORDI from './ORDI.svg'
 import GALA from './GALA.png'
 import OKX from './OKX.png'
 import AXLE1 from './AXLE.png'
+import UNISAT from './UNISAT.png'
+import TUR from './TUR.png'
+import PORT from './PORT.png'
+import BISO from './BISO.png'
 import Toggle from '../../Components/Toggle/Toggle';
+import Column from '../../Components/Box/Column';
+import charts1 from '../../assets/img/home/charts1.png'
+import charts2 from '../../assets/img/home/charts2.png'
+import charts3 from '../../assets/img/home/charts3.png'
+import charts4 from '../../assets/img/home/charts4.png'
+import charts5 from '../../assets/img/home/charts5.png'
+import charts6 from '../../assets/img/home/charts6.png'
+import partnerBg from '../../assets/img/home/partner_bg.png'
 
 export default function HomeIndex() {
 
@@ -47,6 +59,16 @@ export default function HomeIndex() {
     autoplaySpeed: 2000,
     arrows: false,
   };
+
+  // 饼图列表
+  const chartsList = [
+    { img: charts1, text: 'Ecological construction'},
+    { img: charts2, text: 'Market value management'},
+    { img: charts3, text: 'Game mining'},
+    { img: charts4, text: 'Team'},
+    { img: charts5, text: 'Air drop'},
+    { img: charts6, text: 'Whitelist'},
+  ]
 
   return (
     <div style={{background: '#000'}}>
@@ -135,8 +157,19 @@ export default function HomeIndex() {
               Total: <span>100</span>Billion
             </DistributionButton>
 
-            <div className='distribution_png'>
-              <img src={distributionCharts} />
+            <div className='distribution_charts'>
+              {
+                chartsList.map(item => {
+                  return    <Column 
+                    width={theme.isH5 ? '74px' : '105px'}  
+                    gap='30px'
+                    alignItems={'center'}
+                  >
+                  <div className='charts_circle'><img src={item.img} alt='' /></div>
+                  <div className='charts_text'>{item.text}</div>
+                </Column>
+                })
+              }
             </div>
             <div className='text_row'>
               <img src={distributionPng} />
@@ -268,47 +301,53 @@ This roadmap aims to showcase the development plans of the Rabbit platform in th
       </Mission>
 
       <Partner>
+
       <ContentBox>
         <PartnerColumn>
         <Title>Ecological <span>partner</span></Title>
         <div className='flex-row'>
-          <div className='row'>
-            <span dangerouslySetInnerHTML={{ __html: BTCIcon || '' }} />
-            <p>BTC</p>
-          </div>
-          <div className='row'>
-            <span dangerouslySetInnerHTML={{ __html: ETHIcon || '' }} />
-            <p>ETH</p>
-          </div>
-          <div className='row'>
-            {/* <span dangerouslySetInnerHTML={{ __html: ORDI || '' }} /> */}
-            <img src={ORDI} alt='' />
-            <p>ORDI</p>
-          </div>
-          <div className='row'>
-            <span dangerouslySetInnerHTML={{ __html: BINAIcon || '' }} />
-            <p>BINANCE</p>
-          </div>
-          <div className='row'>
-            {/* <span dangerouslySetInnerHTML={{ __html: OKXIcon || '' }} /> */}
+          <PartnerButton className='row'>
+            {/* <span dangerouslySetInnerHTML={{ __html: BTCIcon || '' }} />
+            <p>OKX WALLET</p> */}
             <img src={OKX} alt='' />
-            <p>OKX</p>
-          </div>
-          <div className='row'>
-            {/* <span dangerouslySetInnerHTML={{ __html: GALAIcon || '' }} /> */}
+            <p>OKX WALLET</p>
+          </PartnerButton>
+          <PartnerButton className='row'>
             <img src={GALA} alt='' />
             <p>GALA</p>
-          </div>
-          <div className='row'>
-            {/* <span dangerouslySetInnerHTML={{ __html: AXLE || '' }} /> */}
+          </PartnerButton>
+          <PartnerButton className='row'>
+            {/* <span dangerouslySetInnerHTML={{ __html: ORDI || '' }} /> */}
             <img src={AXLE1} alt='' />
             <p>AXLE</p>
-          </div>
+          </PartnerButton>
+          <PartnerButton className='row'>
+            <img src={UNISAT} alt='' />
+            <p>UNISAT</p>
+          </PartnerButton>
+          <PartnerButton className='row'>
+            {/* <span dangerouslySetInnerHTML={{ __html: OKXIcon || '' }} /> */}
+            <img src={TUR} alt='' />
+            <p>TURTSAT</p>
+          </PartnerButton>
+          <PartnerButton className='row'>
+            {/* <span dangerouslySetInnerHTML={{ __html: GALAIcon || '' }} /> */}
+            <img src={PORT} alt='' />
+            <p>PORT3</p>
+          </PartnerButton>
+          <PartnerButton className='row'>
+            {/* <span dangerouslySetInnerHTML={{ __html: AXLE || '' }} /> */}
+            <img src={BISO} alt='' />
+            <p>BISO SWAP</p>
+          </PartnerButton>
         </div>
         </PartnerColumn>
       </ContentBox>
+      <div className='partner_bg'>
+        <img src={partnerBg} alt='' />
+      </div>
+      <BottomBG />
       </Partner>
-    <BottomBG />
     <Footer />
     </div>
   )

@@ -118,7 +118,7 @@ export default function HeaderNav() {
           <RouterLink to={"/"} className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} >About</RouterLink>
           <RouterLink to={"/game"} className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} >Game</RouterLink>
           <div >
-            <RouterLink to={"/airdrop"} className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} >Airdrop</RouterLink>
+            <RouterLink  to={"/airdrop"} className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} >Airdrop</RouterLink>
           </div>
           <div >
             <RouterLink style={{ pointerEvents: 'none', color: '#686868' }} to={"/Development"} className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} >Under Development</RouterLink>

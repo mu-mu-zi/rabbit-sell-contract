@@ -7,6 +7,9 @@ import VisionBg from '../../assets/img/Vision_bg.png'
 import SignPng from '../../assets/img/Sign_png.png'
 import distributionButton from '../../assets/img/distributionButton.png'
 import bottomBg from '../../assets/img/bottom_bg.png'
+import partnerBg from '../../assets/img/home/partner_bg.png'
+import partnerButton from '../../assets/img/home/partnerButton.png'
+import h5partnerButton from '../../assets/img/home/h5partnerButton.png'
 export const Layer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
@@ -196,11 +199,27 @@ export const Mission = styled.div`
 
 `
 export const Partner = styled.div`
+  position: relative;
   background: #000;
   padding-top: 212px;
   ${({ theme }) => theme.mediaWidth.sm`
   padding-top: 43px;
 `}
+.partner_bg {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+    ${({ theme }) => theme.mediaWidth.sm`
+     top: 20px;
+    `}
+  img {
+    ${({ theme }) => theme.mediaWidth.sm`
+      width: 163px;
+      height: 163px;
+    `}
+  }
+}
 `
 export const Roadmap = styled.div`
   background: #000;
@@ -328,12 +347,34 @@ export const DistributionFlex = styled.div`
     gap: 16px;
     padding-top:42px;
   `}
-  .distribution_png {
-    margin-top: 42px;
-    img {
+  .distribution_charts {
+    margin-top: 117px;
+    display: flex;
+    gap: 50px;
+    margin-bottom: 70px;
+    ${({ theme }) => theme.mediaWidth.sm`
+      flex-wrap: wrap;
+      justify-content: center;
+    `}
+    .charts_circle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        ${({ theme }) => theme.mediaWidth.sm`
+          width: 41px;
+          height: 41px;
+        `}
+      }
+    }
+    .charts_text {
+      text-align: center;
+      color: #A3968C;
+      font-size: 16px;
+      font-weight: 500;
       ${({ theme }) => theme.mediaWidth.sm`
-        width: 100%;
-      `}
+      font-size: 11px;
+        `}
     }
   }
   .text_row {
@@ -355,7 +396,7 @@ export const DistributionFlex = styled.div`
         width: 95px;
         height: 134px;
         `
-      }
+  }
     }
     .text_box {
       position: relative;
@@ -373,7 +414,7 @@ export const DistributionFlex = styled.div`
         font-size: 14px;
         font-weight: 500;
         `
-      }
+  }
       .line_left {
         position: absolute;
         top: 0;
@@ -640,26 +681,26 @@ export const PartnerColumn = styled.div`
   justify-content: center;
   align-items: center;
   gap: 71px;
-  padding: 0 223px;
+  padding: 0 166px;
   ${({ theme }) => theme.mediaWidth.sm`
   gap: 23px;
-  padding: 0 35px;
+  padding: 0 17px;
 `}
   .flex-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    column-gap: 90px;
+    column-gap: 27px;
     row-gap: 48px;
     color: #D9D9D9;
     font-size: 28px;
     font-weight: 500;
     text-transform: uppercase;
     ${({ theme }) => theme.mediaWidth.sm`
-  column-gap: 20px;
-  row-gap: 15px;
-  font-size: 14px;
-`}
+      column-gap: 8px;
+      row-gap: 19px;
+      font-size: 11px;
+    `}
     .row {
       display: flex;
       align-items: center;
@@ -778,3 +819,30 @@ export const GameBox = styled.div`
 
 `
 
+export const PartnerButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(${partnerButton}) no-repeat;
+
+  background-size: 86% 101%;
+  background-position: center;
+  height: 69px;
+  color: #D9D9D9;
+  font-size: 28px;
+  font-weight: 500;
+  white-space: nowrap;
+  & img {
+    margin-left: 40px;
+    ${({ theme }) => theme.mediaWidth.sm`
+      margin-left: 11px;
+      width: 17px;
+      height: 17px;
+    `}
+  }
+  ${({ theme }) => theme.mediaWidth.sm`
+    background: url(${h5partnerButton}) no-repeat;
+    font-size: 11px;
+    height: 27px;
+  `}
+`
