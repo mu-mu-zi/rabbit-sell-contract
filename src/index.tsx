@@ -3,17 +3,20 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import ThemeProvider from './theme';
 import { BrowserRouter } from 'react-router-dom';
+import ModalContext from './Components/ModalContext/ModalContext';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
+  <>
     <BrowserRouter>
     <ThemeProvider>
+    <ModalContext>
       <App />
+    </ModalContext>
     </ThemeProvider>
     </BrowserRouter>
-  </React.StrictMode>
+  </>
 );
 
 // If you want to start measuring performance in your app, pass a function

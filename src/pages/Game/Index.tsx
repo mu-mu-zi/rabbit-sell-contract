@@ -11,18 +11,8 @@ import h5PtoSign from './h5PtoSign.png'
 import PtoSign from './PtoSign.png'
 import Toggle from '../../Components/Toggle/Toggle';
 import { useTheme } from 'styled-components';
-interface IResponseData<T> {
-  code: number,
-  data?: T,
-  message: string,
-  success: boolean
-}
-export interface IList<T> {
-  page: number
-  pageSize: number
-  total: number
-  list: T[]
-}
+import { IList, IResponseData } from '../../App';
+
 interface GameList {
   "id": string,
   "createdAt": number,

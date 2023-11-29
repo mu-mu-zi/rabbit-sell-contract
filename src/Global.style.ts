@@ -74,20 +74,18 @@ export const GlobalStyle = createGlobalStyle`
 .semi-notification-list {
     margin-top: 60px;
 }
-    /* @media screen and (max-width: 900px){
-        html body{
-            min-width: 375px;
-            width: 100%;
-        }
-        .borderRadius{
-            border-radius: 8px;
-        }
-        .font12 {
-            font-size: 10px;
-        }
-    
-        .font14 {
-            font-size: 12px;
-        }
-    } */
+.semi-modal-content {
+    background-color: transparent;
+    padding: 0;
+}
+.loginShaBishejiAutoFill {
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      box-shadow: 0 0 0 30px #383838 inset !important;
+      -webkit-text-fill-color: #fff;
+      align-self: center;
+    }
+  }
 `;

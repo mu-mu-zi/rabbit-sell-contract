@@ -75,7 +75,7 @@ export const ButtonGrounp = styled.div`
     gap: 17px;
 
   `}
-  span, svg {
+  & > span, svg {
     ${({ theme }) => theme.mediaWidth.sm`
       width: 18px;
       height: 18px;
@@ -105,9 +105,17 @@ export const ConnectWalletButton = styled.div`
   font-weight: 700;
   cursor: pointer;
   .address {
+    white-space: nowrap;
     display: flex;
     max-width: 200px;
-    gap: 10px;
+    gap: 8.5px;
+    span {
+      display: flex;
+    align-items: center;
+    }
+    ${({ theme }) => theme.mediaWidth.sm`
+     
+    `}
   }
   ${({ theme }) => theme.mediaWidth.sm`
     font-size: 6.5px;

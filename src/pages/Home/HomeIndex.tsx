@@ -44,7 +44,7 @@ export default function HomeIndex() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2022200,
+    autoplaySpeed: 2000,
     arrows: false,
   };
 

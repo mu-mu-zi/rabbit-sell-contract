@@ -118,13 +118,12 @@ export default function HeaderNav() {
           <RouterLink to={"/"} className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} >About</RouterLink>
           <RouterLink to={"/game"} className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} >Game</RouterLink>
           <div >
-            <RouterLink style={{ pointerEvents: 'none', color: '#686868' }} to={"/airdrop"} className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} >Airdrop</RouterLink>
+            <RouterLink to={"/airdrop"} className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} >Airdrop</RouterLink>
           </div>
           <div >
             <RouterLink style={{ pointerEvents: 'none', color: '#686868' }} to={"/Development"} className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} >Under Development</RouterLink>
           </div>
         </UlHref>
-
 
         <ButtonGrounp>
           <a href={'https://t.me/Rabbitgames_org'} target='_blank' dangerouslySetInnerHTML={{ __html: TgSvgIcon || '' }} rel="noreferrer" />
@@ -152,12 +151,13 @@ export default function HeaderNav() {
               title=""
               columns={[
                 {
-                  label: 'Logout',
+                  label: 'Exit',
                   to: '/',
                   render: (text: string) => {
                     return <Flex
                       justifyContent="center"
                       width="100%"
+                      minWidth='100px'
                       cursor="pointer"
                       onClick={async () => {
                         disConnect()
@@ -194,7 +194,7 @@ export default function HeaderNav() {
                   label: 'Airdrop',
                   to: '/Airdrop',
                   render: () => {
-                    return <span style={{ pointerEvents: 'none', color: '#686868' }}>Airdrop</span>
+                    return <span>Airdrop</span>
                   }
                 },
                 {
