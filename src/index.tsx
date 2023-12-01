@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import ThemeProvider from './theme';
+import { Provider } from 'react-redux';
+import { store } from './store';
 import { BrowserRouter } from 'react-router-dom';
 import ModalContext from './Components/ModalContext/ModalContext';
 const root = ReactDOM.createRoot(
@@ -9,13 +11,15 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <>
-    <BrowserRouter>
-    <ThemeProvider>
-    <ModalContext>
-      <App />
-    </ModalContext>
-    </ThemeProvider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <ThemeProvider>
+          <ModalContext>
+            <App />
+          </ModalContext>
+        </ThemeProvider>
+      </BrowserRouter>
+    </Provider>
   </>
 );
 

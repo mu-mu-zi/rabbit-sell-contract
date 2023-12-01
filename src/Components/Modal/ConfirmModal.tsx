@@ -24,6 +24,11 @@ const Header = styled.div`
   font-size: 20px;
   font-weight: 600;
   color: #fff;
+  ${({ theme }) => theme.mediaWidth.sm`
+    margin-top: 9px;
+    margin-bottom: 9px;
+    font-size: 15px;
+  `}
 `
 
 const InputEmail = styled(Input)<InputProps>`
@@ -34,14 +39,24 @@ const InputEmail = styled(Input)<InputProps>`
   font-size: 16px;
   font-weight: 300;
   border: none;
+  ${({ theme }) => theme.mediaWidth.sm`
+    height: 26px;
+    font-size: 11px;
+  `}
   .semi-input {
     height: 44px;
     border-radius: 8px;
     background-color: #383838 !important;
+    ${({ theme }) => theme.mediaWidth.sm`
+      height: 26px;
+    `}
     ::placeholder {
       color: #7C7C7C;
       font-weight: 400 !important;
       font-size: 16px;
+      ${({ theme }) => theme.mediaWidth.sm`
+        font-size: 11px;
+      `}
     }
     :hover {
       background-color: #383838 !important;
@@ -105,12 +120,12 @@ export default function ConfirmModal(props: ConfirmModalProps & IOpenModal) {
         onCancel={props.destoryComponent}
         title=""
         closable={false}
-        bodyStyle={{ padding: '0 40px', background: '#161616', border: '1px solid #FF9231', borderRadius: '16px', margin: '30px' }}
+        bodyStyle={{ padding: theme.isH5 ? '0 13px' : '0 40px', background: '#161616', border: '1px solid #FF9231', borderRadius: '16px', margin: theme.isH5 ? '19px' : '30px' }}
         visible={true}
         header={null}
         footer={null}
         height={'content'}
-        width={'454px'}
+        width={theme.isH5 ? '257px' : '454px'}
         centered
       // style={{ borderRadius: '16px' }}
       >
@@ -119,7 +134,7 @@ export default function ConfirmModal(props: ConfirmModalProps & IOpenModal) {
           top='0px'
           left={'0px'}
         >
-          <img src={rabbit} alt='' />
+          <img style={{ width: theme.isH5 ? '46px' : 'initial', height: theme.isH5 ? '85px' : 'initial'}} src={rabbit} alt='' />
         </Box>
         <Header>
           {/* <Box /> */}
@@ -129,14 +144,14 @@ export default function ConfirmModal(props: ConfirmModalProps & IOpenModal) {
           <Typography>{props.title}</Typography>
         </Header>
         <Flex
-          fontSize={'16px'}
+          fontSize={theme.isH5 ? '11px' : '16px'}
           fontWeight={300}
           textAlign={'center'}
           color={'#fff'}
         >
           {props.confirmText}
         </Flex>
-        <Column mt='48px' mb='40px' gap='24px' >
+        <Column mt={theme.isH5 ? '17px' : '48px'} mb={theme.isH5 ? '17px' : '40px'} gap={theme.isH5 ? '15px' : '24px'} >
 
           {
             props.type === ModalType.Email
@@ -163,14 +178,15 @@ export default function ConfirmModal(props: ConfirmModalProps & IOpenModal) {
             justifyContent={'center'}
             background={'#FF9231'}
             borderRadius={'8px'}
-            fontSize={'18px'}
+            fontSize={theme.isH5 ? '14px' : '18px'}
             fontWeight={700}
+            cursor={'pointer'}
             onClick={() => {
               props.onFnUp()
               // props.destoryComponent();
             }}
             width='100%'
-            height='47px'
+            height={theme.isH5 ? '30px' : '47px'}
             color='#fff'
           >
             {props.BtnTextUp}
@@ -191,12 +207,13 @@ export default function ConfirmModal(props: ConfirmModalProps & IOpenModal) {
           }}
             alignItems={'center'}
             justifyContent={'center'}
+            cursor={'pointer'}
             background={'#FF9231'}
             borderRadius={'8px'}
-            fontSize={'18px'}
+            fontSize={theme.isH5 ? '14px' : '18px'}
             fontWeight={700}
             width='100%'
-            height='47px'
+            height={theme.isH5 ? '30px' : '47px'}
             color='#fff'
           >
             {props.BtnTextDown}

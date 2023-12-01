@@ -5,13 +5,6 @@ export const AirdropWrap = styled.div`
   flex-direction: column;
   min-height: 100vh;
   background: #000;
-  ${({ theme }) => theme.mediaWidth.sm`
-    min-height: initial;
-    height: 100vh;
-  `}
-@supports (-webkit-touch-callout: none) {
-  height: -webkit-fill-available;
-}
   `
 export const Content = styled.div`
   display: flex;
@@ -24,7 +17,10 @@ export const Content = styled.div`
   overflow: hidden;
   ${({ theme }) => theme.mediaWidth.sm`
     max-width: 375px;
-    overflow: auto;
+    padding: 0 10px;
+    gap: 10px;
+    margin-top: 22px;
+    margin-bottom: 22px;
   `}
 `
 export const Title = styled.div`
@@ -85,6 +81,10 @@ export const TopContent = styled.div`
       display: flex;
       flex-direction: column;
       gap: 6px;
+      ${({ theme }) => theme.mediaWidth.sm`
+        flex-direction: row;
+        gap: 10px;
+      `}
       .dashedLine {
         width: 0px;
         height: 13px;
@@ -96,6 +96,12 @@ export const TopContent = styled.div`
         gap: 22px;
         color: #A3968C;
         font-size: 16px;
+        ${({ theme }) => theme.mediaWidth.sm`
+          align-items: center;
+          gap: 10px;
+          font-size: 12px;
+          flex-direction: column;
+        `}
         .circle {
           display: flex;
           align-items: center;
@@ -119,22 +125,41 @@ export const TopContent = styled.div`
     background: #0B0503;
     padding: 20px;
     z-index: 1;
+    ${({ theme }) => theme.mediaWidth.sm`
+           margin-top: 52px;
+           margin-right: 0;
+           margin-left: 16px;
+           width: 187px;
+           padding: 18px 0 21px 11px;
+      `}
     .title {
       color: #FFF;
       font-size: 24px;
       font-weight: 700;
+      ${({ theme }) => theme.mediaWidth.sm`
+        font-size: 14px;
+        margin-top: 3px;
+      `}
     }
     .description {
       margin-top: 5px;
       color: #A3968C;
       font-size: 14px;
       font-weight: 500;
+      ${({ theme }) => theme.mediaWidth.sm`
+        font-size: 11px;
+        white-space: nowrap;
+      `}
     }
     .rewardAmount {
       margin-top: 23px;
       color: #FF9231;
       font-size: 50px;
       font-weight: 700;
+      ${({ theme }) => theme.mediaWidth.sm`
+        font-size: 25px;
+        margin-top: 3px;
+      `}
     }
     .button {
       width: fit-content;
@@ -146,6 +171,11 @@ export const TopContent = styled.div`
       font-size: 13px;
       font-weight: 700;
       padding: 6px 22px;
+      ${({ theme }) => theme.mediaWidth.sm`
+        font-size: 12px;
+        padding: 6px 15px;
+        margin-top: 11px;
+      `}
     }
   }
 `
@@ -170,14 +200,36 @@ export const CardBox = styled.div`
   border-radius: 16px;
   background: #161616;
   cursor: pointer;
+  &.disabled {
+    background: #333;
+    cursor: not-allowed;
+  }
+  ${({ theme }) => theme.mediaWidth.sm`
+    width: 355px;
+    padding: 10px;
+  `}
+  .right {
+      span svg {
+        ${({ theme }) => theme.mediaWidth.sm`
+          width: 12px; 
+          height: 15px;
+        `}
+    }
+    }
   .left {
     display: flex;
     align-items: center;
     gap: 30px;
-
+    ${({ theme }) => theme.mediaWidth.sm`
+    gap: 20px;
+    `}
     .imgBox {
       width: 90px;
       height: 90px;
+      ${({ theme }) => theme.mediaWidth.sm`
+        width: 45px;
+        height: 45px;
+      `}
       img {
         width: 100%;
         height: 100%;
@@ -187,10 +239,16 @@ export const CardBox = styled.div`
       display: flex;
       flex-direction: column;
       gap: 16px;
+      ${({ theme }) => theme.mediaWidth.sm`
+        gap: 14px;
+      `}
       .title {
         color: #FFF;
         font-size: 20px;
         font-weight: 600;
+        ${({ theme }) => theme.mediaWidth.sm`
+        font-size: 15px;
+      `}
       }
       .takeAmount {
         display: flex;
@@ -199,7 +257,12 @@ export const CardBox = styled.div`
         color: #A3968C;
         font-size: 20px;
         font-weight: 400;
+        ${({ theme }) => theme.mediaWidth.sm`
+        font-size: 12px;
+        gap: 5px;
+      `}
       }
     }
+
   }
 `

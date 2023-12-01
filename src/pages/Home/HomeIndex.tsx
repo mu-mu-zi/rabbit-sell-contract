@@ -78,7 +78,7 @@ export default function HomeIndex() {
           <AboutFlex>
             <div className='text_right'>
               <div className='text_38'>
-              Rait is a game platform based on the <span className='orig'>Bitcoin ecosystem</span>.
+              Rabbit is a game platform based on the <span className='orig'>Bitcoin ecosystem</span>.
               </div>
 
               <div className='text_26'>
@@ -108,7 +108,7 @@ export default function HomeIndex() {
 
             <div className='text'>
              <div>
-             Rait is dedicated to building a blockchain-based ecosystem, with Rait serving as the utility token of the platform actively involved in network governance. It provides users with the rights to construct and own, supporting the sale of in-game models and items. This ecosystem aims to create a more open, sustainable, and user-engaging gaming environment, offering players more opportunities to create, own, and trade digital assets.
+             Rabbit is dedicated to building a blockchain-based ecosystem, with Rait serving as the utility token of the platform actively involved in network governance. It provides users with the rights to construct and own, supporting the sale of in-game models and items. This ecosystem aims to create a more open, sustainable, and user-engaging gaming environment, offering players more opportunities to create, own, and trade digital assets.
              </div>
             </div>
 
@@ -152,9 +152,9 @@ export default function HomeIndex() {
       <Distribution id="distribution">
         <ContentBox>
           <DistributionFlex>
-            <Title><span>Distribution</span> modes</Title>
+            <Title><span>Distribution</span> Modes</Title>
             <DistributionButton>
-              Total: <span>100</span>Billion
+              Total: <span>10</span>Billion
             </DistributionButton>
 
             <div className='distribution_charts'>
@@ -304,7 +304,7 @@ This roadmap aims to showcase the development plans of the Rabbit platform in th
 
       <ContentBox>
         <PartnerColumn>
-        <Title>Ecological <span>partner</span></Title>
+        <Title>Ecological <span>Partner</span></Title>
         <div className='flex-row'>
           <PartnerButton className='row'>
             {/* <span dangerouslySetInnerHTML={{ __html: BTCIcon || '' }} />

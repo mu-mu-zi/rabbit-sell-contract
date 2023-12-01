@@ -114,11 +114,15 @@ export const ConnectWalletButton = styled.div`
     gap: 8.5px;
     span {
       display: flex;
-    align-items: center;
+      align-items: center;
     }
-    ${({ theme }) => theme.mediaWidth.sm`
-     
-    `}
+    svg {
+
+      ${({ theme }) => theme.mediaWidth.sm`
+      width: 10px;
+      height: 10px;
+      `}
+    }
   }
   ${({ theme }) => theme.mediaWidth.sm`
     font-size: 6.5px;
@@ -524,9 +528,19 @@ export const StoryLine = styled.div`
   .grid-3 {
     display: grid;
     grid-template-columns: 1fr 50px 1fr;
+    ${({ theme }) => theme.mediaWidth.sm`
+      grid-template-columns: 1fr 25px 1fr;
+    `}
     .icons {
         text-align: center;
         z-index: 1;
+        svg {
+
+          ${({ theme }) => theme.mediaWidth.sm`
+            width: 8.5px;
+            height: 8.5px;
+          `}
+        }
       }
     .content {
       display: flex;
@@ -676,12 +690,14 @@ export const MissionColumn = styled.div`
   }
 `
 export const PartnerColumn = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 71px;
   padding: 0 166px;
+  z-index: 1;
   ${({ theme }) => theme.mediaWidth.sm`
   gap: 23px;
   padding: 0 17px;

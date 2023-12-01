@@ -81,11 +81,27 @@ export const CardDetails = styled.div`
       height: 120px;
     `}
     .sign {
+      background: #16161699;
       position: absolute;
       top: 32px;
       left: 0;
+      border-top-right-radius: 100px;
+      border-bottom-right-radius: 100px;
+      padding: 10px 10px 10px 6px;
+      display: flex;
+      gap: 6px;
+      .sign_text {
+        color: #FFF;
+        font-size: 14px;
+        font-weight: 500;
+        ${({ theme }) => theme.mediaWidth.sm`
+          font-size: 12px;
+        `}
+      }
+       
       ${({ theme }) => theme.mediaWidth.sm`
         top: 10px;
+        padding: 5px 8px 5px 3px;
       `}
     }
   }

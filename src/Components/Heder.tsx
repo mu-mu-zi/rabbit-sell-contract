@@ -9,6 +9,8 @@ import DropdownMenu from './DropdownMenu';
 import Toggle from './Toggle/Toggle';
 import Notice from './Notification';
 import Flex from './Box/Flex';
+import { useAppDispatch, useAppSelector } from '../hook/hooks';
+import { setWalletAddress } from '../store/app';
 
 export enum SessionStorageKey {
   WalletAuthorized = "WALLET_AUTHORIZED",
@@ -19,11 +21,13 @@ export default function HeaderNav() {
   const [unisatInstalled, setUnisatInstalled] = useState(true);
   const [accounts, setAccounts] = useState<string[]>([]);
   const [address, setAddress] = useState("");
+  const dispatch = useAppDispatch()
+  const store = useAppSelector((state) => state.App)
   console.log(accounts)
   console.log(address)
+  const unisat = (window as any).unisat;
   // 1-判断是否有uniset
   useEffect(() => {
-
     async function checkUnisat() {
       let unisat = (window as any).unisat;
 
@@ -36,29 +40,41 @@ export default function HeaderNav() {
         setUnisatInstalled(true);
       } else if (!unisat)
         setUnisatInstalled(false);
-      return;
 
-      // unisat.getAccounts().then((accounts: string[]) => {
-      //     handleAccountsChanged(accounts);
-      // });
 
-      // unisat.on("accountsChanged", handleAccountsChanged);
-      // unisat.on("networkChanged", handleNetworkChanged);
+        if(unisat) {
+          // 需要自动连接钱包时打开
+          // unisat.getAccounts().then((accounts: string[]) => {
+          //   handleAccountsChanged(accounts);
+          // });
+          unisat.on("accountsChanged", handleAccountsChanged);
+          unisat.on("networkChanged", handleAccountsChanged);
+        }
 
-      // return () => {
-      //     unisat.removeListener("accountsChanged", handleAccountsChanged);
-      //     unisat.removeListener("networkChanged", handleNetworkChanged);
-      // };
+      return () => {
+        if(unisat) {
+
+          unisat.removeListener("accountsChanged", handleAccountsChanged);
+          unisat.removeListener("networkChanged", handleAccountsChanged);
+        }
+      };
     }
-
     checkUnisat().then();
   }, []);
+  // 判断是否从别的地方断开连接
+  useEffect(() => {
+    if(!store.walletAddress) {
+      setAddress('')
+      setAccounts([])
+    }
+  }, [store.walletAddress])
   // 退出连接
   const disConnect = async () => {
     if (localStorage.getItem(SessionStorageKey.WalletAuthorized) && !!accounts.length) {
       setAddress('')
       setAccounts([])
-      localStorage.removeItem(SessionStorageKey.WalletAuthorized)
+      localStorage.setItem(SessionStorageKey.WalletAuthorized, '')
+      dispatch(setWalletAddress(''))
     }
   }
   // 刷新重连
@@ -66,12 +82,16 @@ export default function HeaderNav() {
     if (localStorage.getItem(SessionStorageKey.WalletAuthorized)) {
       connect()
     }
-  }, [localStorage.getItem(SessionStorageKey.WalletAuthorized)])
+  }, [localStorage.getItem(SessionStorageKey.WalletAuthorized), unisat])
   // 连接
   const connect = async () => {
     try {
+      console.log(unisat)
+      if(unisat) {
       const result = await unisat.requestAccounts();
-      handleAccountsChanged(result);
+
+        handleAccountsChanged(result);
+      }
     } catch (e: any) {
       Notice.Error({
         title: e.message || 'error'
@@ -84,6 +104,10 @@ export default function HeaderNav() {
   });
   const self = selfRef.current;
   const handleAccountsChanged = async (_accounts: string[]) => {
+    const network = await unisat.getNetwork();
+    if(network === 'testnet') {
+      Notice.Warning({title: 'Please connect to the official website'})
+    }
     if (self.accounts[0] === _accounts[0] && localStorage.getItem(SessionStorageKey.WalletAuthorized)) {
       // prevent from triggering twice
       return;
@@ -92,17 +116,19 @@ export default function HeaderNav() {
     if (_accounts.length > 0) {
       setAccounts(_accounts);
       localStorage.setItem(SessionStorageKey.WalletAuthorized, _accounts[0])
+      dispatch(setWalletAddress(_accounts[0]))
       setAddress(_accounts[0]);
       // setAddress(address);
       // getBasicInfo();
     } else {
       localStorage.setItem(SessionStorageKey.WalletAuthorized, '')
+      dispatch(setWalletAddress(''))
     }
   };
 
 
 
-  const unisat = (window as any).unisat;
+  
   return <NavWrap>
     <NavTop>
       <LogoGroup
@@ -132,6 +158,10 @@ export default function HeaderNav() {
             <ConnectWalletButton
               onClick={async () => {
                 if (!unisatInstalled) {
+                  if(theme.isH5) {
+                    Notice.Info({title: 'Mobile version is not supported yet'})
+                    return;
+                  }
                   window.open("https://unisat.io")
                   return;
                 }
@@ -193,9 +223,6 @@ export default function HeaderNav() {
                 {
                   label: 'Airdrop',
                   to: '/Airdrop',
-                  render: () => {
-                    return <span>Airdrop</span>
-                  }
                 },
                 {
                   label: 'Under Development',

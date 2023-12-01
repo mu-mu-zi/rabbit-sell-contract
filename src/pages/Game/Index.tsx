@@ -4,7 +4,7 @@ import HeaderNav from '../../Components/Heder';
 import { CardDetails, Content, GameTopBG, GameWrap, MarkdownContainer, Title } from './Index.styled';
 import { BottomBG } from '../Home/HomeIndex.styled';
 import aaaa from './aaaa.png'
-import { TgSvgIcon, XSvgIcon, RdSvgIcon, iosIcon, androidIcon, appleIcon, webIcon, windowsIcon } from '../../utils/svgManage';
+import { TgSvgIcon, XSvgIcon, RdSvgIcon, iosIcon, androidIcon, appleIcon, webIcon, windowsIcon, videoSvgIcon } from '../../utils/svgManage';
 import axios from 'axios';
 import Paginate from '../../Components/Paginate';
 import h5PtoSign from './h5PtoSign.png'
@@ -118,7 +118,9 @@ export default function GameIndex() {
             return <CardDetails key={item.id}>
               <div className='img_bg'>
                 <div className='sign'>
-                  <img src={theme.isH5 ? h5PtoSign : PtoSign} alt='' />
+                  {/* <img src={theme.isH5 ? h5PtoSign : PtoSign} alt='' /> */}
+                  <span dangerouslySetInnerHTML={{ __html: videoSvgIcon || '' }} />
+                  <div className='sign_text'>Live streaming (pre release)</div>
                 </div>
                 <img width={'100%'} height={'100%'} src={item.logoUrl} alt='' />
               </div>
