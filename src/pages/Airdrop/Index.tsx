@@ -149,7 +149,7 @@ export default function AirdropIndex() {
     console.log('aaaa', store.accountInfo)
     if(store.walletAddress) {
 
-      getUserRewards(store.walletAddress)
+      getUserRewards()
     }
     // if (store.accountInfo?.id) {
     //   // 获取用户奖励详情
@@ -168,8 +168,8 @@ export default function AirdropIndex() {
     }
   }, [])
 
-  const getUserRewards = (twitterUserId: string | undefined) => {
-    axios.get<IResponseData<AccountInfo>>(`/dashboard/api/plg/ido/game/user/${twitterUserId}`).then((res) => {
+  const getUserRewards = () => {
+    axios.get<IResponseData<AccountInfo>>(`/dashboard/api/plg/ido/game/user/${store.walletAddress}`).then((res) => {
       console.log('bbbb', res.data.data)
       setUserRewards(res.data.data)
     }).catch((error: any) => {
@@ -235,7 +235,7 @@ export default function AirdropIndex() {
     }).then((res) => {
       if (res.data.code === 0) {
         Notice.Success({ title: 'Received successfully' })
-        getUserRewards(store.accountInfo?.twitterId)
+        getUserRewards()
         destoryModal(id)
 
       } else {
@@ -260,7 +260,7 @@ export default function AirdropIndex() {
     }).then((res) => {
       if (res.data.code === 0) {
         Notice.Success({ title: 'Received successfully' })
-        getUserRewards(store.accountInfo?.twitterId)
+        getUserRewards()
         destoryModal(id)
 
       } else {
@@ -289,7 +289,7 @@ export default function AirdropIndex() {
     }).then((res) => {
       if (res.data.code === 0) {
         Notice.Success({ title: 'Received successfully' })
-        getUserRewards(store.accountInfo?.twitterId)
+        getUserRewards()
         destoryModal(id)
 
       } else {
@@ -314,7 +314,7 @@ export default function AirdropIndex() {
     }).then((res) => {
       if (res.data.code === 0) {
         Notice.Success({ title: 'Received successfully' })
-        getUserRewards(store.accountInfo?.twitterId)
+        getUserRewards()
         destoryModal(id)
 
       } else {
@@ -332,7 +332,7 @@ export default function AirdropIndex() {
     }).then((res) => {
       if (res.data.code === 0) {
         Notice.Success({ title: 'Received successfully' })
-        getUserRewards(store.accountInfo?.twitterId)
+        getUserRewards()
         destoryModal(id)
 
       } else {
@@ -350,7 +350,7 @@ export default function AirdropIndex() {
     }).then((res) => {
       if (res.data.code === 0) {
         Notice.Success({ title: 'Received successfully' })
-        getUserRewards(store.accountInfo?.twitterId)
+        getUserRewards()
       } else {
         Notice.Warning({ title: 'Not enough followers' })
       }
