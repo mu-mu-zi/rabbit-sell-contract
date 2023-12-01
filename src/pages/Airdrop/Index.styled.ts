@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import test from './test.svg'
 export const AirdropWrap = styled.div`
   display: flex;
   flex-direction: column;
@@ -115,14 +115,18 @@ export const TopContent = styled.div`
     }
   }
   .rightBox {
+
+    background: url("${test}");
+    background-size: 100% 100%;
+
     display: flex;
     flex-direction: column;
     height: fit-content;
     margin-top: 89px;
     margin-right: 280px;
-    border-radius: 10px;
-    border: 1px solid #FF9231;
-    background: #0B0503;
+    /* border-radius: 10px; */
+    /* border: 1px solid #FF9231; */
+    /* background: #0B0503; */
     padding: 20px;
     z-index: 1;
     ${({ theme }) => theme.mediaWidth.sm`
