@@ -10,7 +10,7 @@ import Toggle from './Toggle/Toggle';
 import Notice from './Notification';
 import Flex from './Box/Flex';
 import { useAppDispatch, useAppSelector } from '../hook/hooks';
-import { setWalletAddress } from '../store/app';
+import { setAccountInfo, setWalletAddress } from '../store/app';
 
 export enum SessionStorageKey {
   WalletAuthorized = "WALLET_AUTHORIZED",
@@ -47,7 +47,13 @@ export default function HeaderNav() {
           // unisat.getAccounts().then((accounts: string[]) => {
           //   handleAccountsChanged(accounts);
           // });
-          unisat.on("accountsChanged", handleAccountsChanged);
+          unisat.on("accountsChanged", (e: string[]) => {
+            handleAccountsChanged(e);
+            // 切换钱包的时候需要把推特信息清空
+            dispatch(setAccountInfo(undefined))
+            localStorage.removeItem('accountInfo')
+          }  
+        );
           unisat.on("networkChanged", handleAccountsChanged);
         }
 

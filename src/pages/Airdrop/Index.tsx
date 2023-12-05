@@ -49,8 +49,10 @@ interface ConentList {
   img: string;
   id: number;
 }
-// 评论文章说是写死
-const twitterId = '1730134165532930308'
+// 转发评论文章说是写死
+const twitterId = '1731538546283167900'
+// 转发推特url
+const rePostUrl = 'https://twitter.com/intent/retweet?tweet_id='
 export default function AirdropIndex() {
   const theme = useTheme();
   const { openModal, destoryModal } = useContext(ModalContext)
@@ -58,13 +60,14 @@ export default function AirdropIndex() {
   const dispatch = useAppDispatch()
   const store = useAppSelector((state) => state.App)
 
+  // 各个弹窗的文字
   const contentList: ConentList[] = [
     {
       text: <Column alignItems={'flex-start'} gap='5px'>
         Link your wallet and X profile
-        <Flex fontSize={theme.isH5 ? '10px' : '16px'}>
-          {'(More than 5 fans can participate in the task)'}
-        </Flex>
+        {/* <Flex fontSize={theme.isH5 ? '10px' : '16px'}>
+          {'(More than 3 fans can participate in the task)'}
+        </Flex> */}
       </Column>,
       amount: 10000,
       img: line1,
@@ -86,14 +89,7 @@ export default function AirdropIndex() {
       text: 'Forward this tweet',
       amount: 30000,
       title: 'Forward this tweet',
-      confirmText: `"You must go down to the heavens and spread the gospel to all things." (Mark 16:15) It may take us a minute to find your post. Please Elon accelerate the pace.
-
-      Hi, my name is @ ${store.accountInfo?.username || 'xxx'} and I am a # Rabbitgames (@ Rabbitgames) farmer.
-      Go to the whole world and preach the gospel to all things created
-      Hello everyone, my name is @ ${store.accountInfo?.username || 'xxx'}, and I am # Rabbitgames (@ Rait1io) farmer
-      I will do my best to fulfill my responsibilities and always cultivate # Rabbitgames, which is the best
-      
-      Join me together!`,
+      confirmText: `Retweet Rabbitgames Twitter to get more rewards`,
       BtnTextUp: 'Forward tweet',
       BtnTextDown: 'Claim rewards',
       type: ModalType.Forward,
@@ -194,6 +190,8 @@ export default function AirdropIndex() {
       } else {
         localStorage.setItem(SessionStorageKey.WalletAuthorized, '')
         dispatch(setWalletAddress(''))
+        // 清空url参数
+        window.history.replaceState({}, document.title, window.location.pathname);
         Notice.Error({title: 'address or X account are bound'})
       }
     }).catch((error: any) => {
@@ -239,7 +237,7 @@ export default function AirdropIndex() {
         destoryModal(id)
 
       } else {
-        Notice.Warning({ title: 'Failed to collect' })
+        Notice.Warning({ title: 'Failed to claim rewards' })
       }
     }).catch((error: any) => {
       console.log(error)
@@ -249,14 +247,22 @@ export default function AirdropIndex() {
   // 转发
   const FnForward = () => {
     if (store.accountInfo) {
-      window.open(`${store.accountInfo?.shareUrl + encodeURIComponent(contentList[2].confirmText || '')}`)
+      // window.open(`${rePostUrl + twitterId}`)
+      axios.post<IResponseData<boolean>>(`/dashboard/api/plg/ido/game/clickForward`, {
+        twitterId: twitterId,
+        twitterUserId: store.accountInfo?.twitterId
+      }).then((res) => {
+        window.open(`${rePostUrl + twitterId}`)
+      }).catch((error: any) => {
+        console.log(error)
+      })
     }
   }
   // 转发奖励
   const FnForwardReward = (twitterUserId: string | undefined, id: any) => {
     axios.post<IResponseData<boolean>>(`/dashboard/api/plg/ido/game/share`, {
       twitterUserId,
-      text: contentList[2].confirmText?.substring(1, 30)
+      text: twitterId
     }).then((res) => {
       if (res.data.code === 0) {
         Notice.Success({ title: 'Received successfully' })
@@ -264,7 +270,7 @@ export default function AirdropIndex() {
         destoryModal(id)
 
       } else {
-        Notice.Warning({ title: 'Failed to collect' })
+        Notice.Warning({ title: 'Failed to claim rewards' })
       }
     }).catch((error: any) => {
       console.log(error)
@@ -293,7 +299,7 @@ export default function AirdropIndex() {
         destoryModal(id)
 
       } else {
-        Notice.Warning({ title: 'Failed to collect' })
+        Notice.Warning({ title: 'Failed to claim rewards' })
       }
     }).catch((error: any) => {
       console.log(error)
@@ -303,7 +309,15 @@ export default function AirdropIndex() {
   // 点赞
   const FnLike = () => {
     if (store.accountInfo) {
-      window.open(`${store.accountInfo?.twitterUrl + twitterId}`)
+      // window.open(`${rePostUrl + twitterId}`)
+      axios.post<IResponseData<boolean>>(`/dashboard/api/plg/ido/game/clickLike`, {
+        twitterId: twitterId,
+        twitterUserId: store.accountInfo?.twitterId
+      }).then((res) => {
+        window.open(`https://twitter.com/intent/like?tweet_id=${twitterId}`)
+      }).catch((error: any) => {
+        console.log(error)
+      })
     }
   }
   // 点赞奖励
@@ -318,7 +332,7 @@ export default function AirdropIndex() {
         destoryModal(id)
 
       } else {
-        Notice.Warning({ title: 'Failed to collect' })
+        Notice.Warning({ title: 'Failed to claim rewards' })
       }
     }).catch((error: any) => {
       console.log(error)
@@ -336,7 +350,7 @@ export default function AirdropIndex() {
         destoryModal(id)
 
       } else {
-        Notice.Warning({ title: 'Failed to collect' })
+        Notice.Warning({ title: 'Failed to claim rewards' })
       }
     }).catch((error: any) => {
       console.log(error)
@@ -345,6 +359,9 @@ export default function AirdropIndex() {
 
   // 登录奖励
   const FnLinkReward = (twitterUserId: string | undefined) => {
+    if(!store.accountInfo?.id) {
+      return
+    }
     axios.post<IResponseData<boolean>>(`/dashboard/api/plg/ido/game/loginReward `, {
       twitterUserId
     }).then((res) => {

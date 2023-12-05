@@ -321,7 +321,7 @@ export const DistributionButton = styled.div`
   justify-content: center;
   align-items: center;
   background: url(${distributionButton}) no-repeat;
-  min-width: 419px;
+  min-width: 512px;
   height: 101px;
   background-size: 100% 100%;
   background-position: center;
@@ -364,6 +364,12 @@ export const DistributionFlex = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 82px;
+      height: 82px;
+      ${({ theme }) => theme.mediaWidth.sm`
+        width: 41px;
+        height: 41px;
+      `}
       img {
         ${({ theme }) => theme.mediaWidth.sm`
           width: 41px;
@@ -372,12 +378,17 @@ export const DistributionFlex = styled.div`
       }
     }
     .charts_text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      height: 42px;
       color: #A3968C;
       font-size: 16px;
       font-weight: 500;
       ${({ theme }) => theme.mediaWidth.sm`
       font-size: 11px;
+      height: 30px;
         `}
     }
   }

@@ -62,12 +62,12 @@ export default function HomeIndex() {
 
   // 饼图列表
   const chartsList = [
-    { img: charts1, text: 'Ecological construction'},
-    { img: charts2, text: 'Market value management'},
-    { img: charts3, text: 'Game mining'},
+    { img: charts1, text: 'Ecological'},
+    { img: charts2, text: 'Liquidity'},
+    { img: charts3, text: 'Mining'},
     { img: charts4, text: 'Team'},
-    { img: charts5, text: 'Air drop'},
-    { img: charts6, text: 'Whitelist'},
+    { img: charts5, text: 'Fair Launch'},
+    { img: charts6, text: 'Angel Investment'},
   ]
 
   return (
@@ -78,11 +78,11 @@ export default function HomeIndex() {
           <AboutFlex>
             <div className='text_right'>
               <div className='text_38'>
-              Rabbit is a game platform based on the <span className='orig'>Bitcoin ecosystem</span>.
+              Rabbit, a <span className='orig'>Bitcoin-based</span> gaming platform
               </div>
 
               <div className='text_26'>
-              Rabbit is an innovative Bitcoin ecosystem gaming platform, providing Rabbitgames users with an excellent, scalable, and secure online gaming experience. We are committed to creating an entertainment experience centered around community and ownership, encouraging users to actively participate and share the joy brought by games. As a driving force in community development, we define and lead the new frontier of Web3 entertainment. Join us, explore endless possibilities, and together, let's create a unique and exciting gaming world!
+              Rabbit is a revolutionary Bitcoin ecosystem gaming platform, striving to deliver our users a secure,  scalable, and exceptional online gaming experience. Our commitment is to craft an entertainment haven rooted in community and ownership, which encourages users to actively engage and revel in the joy of gaming. As a driving force in community development, we are pioneers who define and lead the new landscape of Web3 entertainment. Join us, unlock infinitive possibilities, and let's co-create a unique and exhilarating gaming universe!
               </div>
 
             </div>
@@ -108,7 +108,7 @@ export default function HomeIndex() {
 
             <div className='text'>
              <div>
-             Rabbit is dedicated to building a blockchain-based ecosystem, with Rait serving as the utility token of the platform actively involved in network governance. It provides users with the rights to construct and own, supporting the sale of in-game models and items. This ecosystem aims to create a more open, sustainable, and user-engaging gaming environment, offering players more opportunities to create, own, and trade digital assets.
+             Rabbit is dedicated to constructing a blockchain-based ecosystem, with Rait as the utility token that is actively involved in the platform’s network governance. This token empowers users with the right to construct and own, facilitating the sale of their in-game models and items. The mechanism’s goal is to foster a more open, sustainable, and user-engaging gaming environment. With the convenience, our players are provided with more opportunities to create, own, and trade digital assets.
              </div>
             </div>
 
@@ -154,15 +154,15 @@ export default function HomeIndex() {
           <DistributionFlex>
             <Title><span>Distribution</span> Modes</Title>
             <DistributionButton>
-              Total: <span>10</span>Billion
+              Total: <span>10,000,000,000</span>
             </DistributionButton>
 
             <div className='distribution_charts'>
               {
-                chartsList.map(item => {
+                chartsList.map((item, index) => {
                   return    <Column 
-                    width={theme.isH5 ? '74px' : '105px'}  
-                    gap='30px'
+                    width={theme.isH5 ? '74px' : '108px'}  
+                    gap='24px'
                     alignItems={'center'}
                   >
                   <div className='charts_circle'><img src={item.img} alt='' /></div>
@@ -176,7 +176,7 @@ export default function HomeIndex() {
 
               <div className='text_box'>
                 <div className='line_left' />
-                Rabbit is a diversified gaming platform that provides a rich and diverse gaming experience and innovative gameplay to meet the entertainment needs of a large audience of players
+                As a diversified gaming platform, Rabbit provides a superb gaming experience and innovative gameplay for the delectation of our vast player audience of varied entertainment preferences.
                 <div className='line_right' />
               </div>
             </div>
@@ -185,7 +185,7 @@ export default function HomeIndex() {
       </Distribution>
 
       <Roadmap id="Roadmap">
-        <ContentBox>
+        <ContentBox style={{maxWidth: '1300px'}}>
           <RoadmapColumn>
             <Title>Rabbit Platform <span>Roadmap</span></Title>
             <div className='bg1'>
@@ -203,8 +203,8 @@ export default function HomeIndex() {
               <div className='grid-3'>
                 <div className='content-left'>
                   <div className='title'>Infrastructure Construction (Q2 2022)</div>
-                  <div className='text'>Build a comprehensive blockchain infrastructure to ensure security and scalability.
-                    Launch Rait tokens and introduce network governance mechanisms to empower users to participate in platform decision-making.</div>
+                  <div className='text'>Establish a robust blockchain infrastructure for enhanced security and scalability. 
+Launch Rait tokens and introduce our network governance mechanisms, empowering users in platform decision-making.</div>
                 </div>
                 <div className='icons'>
                 <span dangerouslySetInnerHTML={{ __html: LineIcon || '' }} />
@@ -218,15 +218,14 @@ export default function HomeIndex() {
                 </div>
                 <div className='content'>
                   <div className='title'>Game Diversity and Innovation (Q3 2023)</div>
-                  <div className='text'>Publish diverse games covering various types and themes to meet the interests of different players.
-Promote innovative games, introduce unique game elements and mechanisms, and bring players a brand new gaming experience.</div>
+                  <div className='text'>Release games spanning various types and themes to cater to diverse player interests. 
+Introduce innovative games featuring unique game elements and mechanisms, thus bringing players a real fresh gaming experience.</div>
                 </div>
               </div>
               <div className='grid-3'>
                 <div className='content-left'>
                   <div className='title'>Community Building and User Participation (Q1 2024)</div>
-                  <div className='text'>Create a powerful community platform to promote interaction and communication between players.
-Launch a community reward plan to motivate users to actively participate in platform development and jointly create a lively and vibrant community.</div>
+                  <div className='text'>Develop a powerful community platform to foster interaction and communication among players. Implement a community reward plan to motivate users to actively contribute to platform development as part of it, creating a lively and vibrant community collaboratively.</div>
                 </div>
                 <div className='icons'>
                 <span dangerouslySetInnerHTML={{ __html: LineIcon || '' }} />
@@ -240,8 +239,8 @@ Launch a community reward plan to motivate users to actively participate in plat
                 </div>
                 <div className='content'>
                   <div className='title'>Digital Asset Ecology (Q4 2024)</div>
-                  <div className='text'>Introduce NFT technology to support the creation, ownership, and trading of digital assets on the platform.
-Launch a modeling and props market, providing players with a platform to create and trade unique digital items.</div>
+                  <div className='text'>Introduce NFT technology to facilitate the creation, ownership, and trading of digital assets on the platform. </div>
+                  <div className='text'>Launch a marketplace for models and props, providing players with an effective channel to trade unique digital items created by themselves.</div>
                 </div>
               </div>
               <div className='grid-3'>
@@ -251,9 +250,8 @@ Launch a modeling and props market, providing players with a platform to create 
                 </div>
                 <div className='content'>
                   <div className='title'>Global Expansion and Cooperation (Q2 2025)</div>
-                  <div className='text'>Expand the scope of platform services, enter the global market, and provide localized gaming experiences.
-Collaborate with other blockchain projects and gaming platforms to jointly promote the global development of the blockchain gaming industry.
-This roadmap aims to showcase the development plans of the Rabbit platform in the coming years, in order to continuously improve user experience, expand the digital asset ecosystem, promote global cooperation, and create an innovative and prosperous blockchain gaming platform.</div>
+                  <div className='text'>Expand the scope of platform services, enter the global market, and provide localized gaming experiences. </div>
+                  <div className='text'>Collaborate with other blockchain projects and gaming platforms to collectively drive the global development of the blockchain gaming industry. This roadmap showcases the development plans of the Rabbit for the coming years, aiming to continually enhance the user experience, expand the digital asset ecosystem, and ultimately create an innovative and prosperous blockchain gaming platform through tighter global cooperation.</div>
                 </div>
               </div>
               <div className='grid-3'>
@@ -276,7 +274,7 @@ This roadmap aims to showcase the development plans of the Rabbit platform in th
             <Title>Vision</Title>
             <div className='text'>
               <div className='float'>
-                Become a globally leading diversified gaming platform, connecting and inspiring players' shared passion and creativity with innovative and diverse gaming experiences. We are committed to creating a digital entertainment paradise, promoting the development of the gaming industry, and bringing players unprecedented fun and interactive experiences.
+              Our vision is to become a global leading blockchain gaming platform with diversified products and community, connecting our players, inspiring shared passion, and unleashing creativity with innovative and diverse gaming experiences. We are committed to creating a digital entertainment paradise, bringing impetus to the growth of the blockchain gaming industry and offering players unparalleled joy and interactive experiences.
               </div>
             </div>
             <div>
@@ -294,7 +292,7 @@ This roadmap aims to showcase the development plans of the Rabbit platform in th
           <img src={missionBg} alt='' />
         </div>
         <div className='floatBox'>
-        Our mission is to enable every player to find their own entertainment paradise on the Rabbit platform by providing diverse game content and innovative gameplay. We strive to build a social and creative ecosystem that expands the boundaries of entertainment experiences in a digital way. We encourage users to participate in platform decision-making and work together to create a thriving and vibrant gaming community.
+        Our ultimate mission is to help our players find a tailored entertainment paradise on the Rabbit platform after experiencing diverse game content and innovative gameplay. We strive to build a social and creative ecosystem that pushes the boundaries of the digital entertainment experience. We invite users to be part of the platform’s decision-making, working together to create a vibrant and thriving gaming community.
         </div>
         </MissionColumn>
       </ContentBox>
