@@ -19,7 +19,7 @@ import distributionPng from '../../assets/img/distribution_png.png'
 import lineBg1 from '../../assets/img/line_bg1.png'
 import lineBg2 from '../../assets/img/line_bg2.png'
 import lineRabbit from '../../assets/img/line_rabbit.png'
-import visionBg from '../../assets/img/vision_bg.png'
+import visionBg from '../../assets/img/Vision_bg.png'
 import missionBg from '../../assets/img/Mission.png'
 import banner1 from '../../assets/img/banner_1.png'
 import banner2 from '../../assets/img/banner_2.png'
@@ -160,8 +160,8 @@ export default function HomeIndex() {
             <div className='distribution_charts'>
               {
                 chartsList.map((item, index) => {
-                  return    <Column 
-                    width={theme.isH5 ? '74px' : '108px'}  
+                  return    <Column
+                    width={theme.isH5 ? '74px' : '108px'}
                     gap='24px'
                     alignItems={'center'}
                   >
@@ -203,7 +203,7 @@ export default function HomeIndex() {
               <div className='grid-3'>
                 <div className='content-left'>
                   <div className='title'>Infrastructure Construction (Q2 2022)</div>
-                  <div className='text'>Establish a robust blockchain infrastructure for enhanced security and scalability. 
+                  <div className='text'>Establish a robust blockchain infrastructure for enhanced security and scalability.
 Launch Rait tokens and introduce our network governance mechanisms, empowering users in platform decision-making.</div>
                 </div>
                 <div className='icons'>
@@ -218,7 +218,7 @@ Launch Rait tokens and introduce our network governance mechanisms, empowering u
                 </div>
                 <div className='content'>
                   <div className='title'>Game Diversity and Innovation (Q3 2023)</div>
-                  <div className='text'>Release games spanning various types and themes to cater to diverse player interests. 
+                  <div className='text'>Release games spanning various types and themes to cater to diverse player interests.
 Introduce innovative games featuring unique game elements and mechanisms, thus bringing players a real fresh gaming experience.</div>
                 </div>
               </div>

@@ -219,7 +219,7 @@ export default function AirdropIndex() {
   // 关注
   const FnFollow = (twitterUserId: string | undefined) => {
     axios.post<IResponseData<boolean>>(`/dashboard/api/plg/ido/game/clickFollow`, {
-      twitterUserId
+      userId: store.accountInfo?.id
     }).then((res) => {
       window.open(store.accountInfo?.following)
     }).catch((error: any) => {
@@ -229,7 +229,7 @@ export default function AirdropIndex() {
   // 关注奖励
   const FnFollowReward = (twitterUserId: string | undefined, id: any) => {
     axios.post<IResponseData<boolean>>(`/dashboard/api/plg/ido/game/following`, {
-      twitterUserId
+      userId: store.accountInfo?.id
     }).then((res) => {
       if (res.data.code === 0) {
         Notice.Success({ title: 'Received successfully' })
@@ -249,8 +249,7 @@ export default function AirdropIndex() {
     if (store.accountInfo) {
       // window.open(`${rePostUrl + twitterId}`)
       axios.post<IResponseData<boolean>>(`/dashboard/api/plg/ido/game/clickForward`, {
-        twitterId: twitterId,
-        twitterUserId: store.accountInfo?.twitterId
+        userId: store.accountInfo?.id
       }).then((res) => {
         window.open(`${rePostUrl + twitterId}`)
       }).catch((error: any) => {
@@ -261,7 +260,7 @@ export default function AirdropIndex() {
   // 转发奖励
   const FnForwardReward = (twitterUserId: string | undefined, id: any) => {
     axios.post<IResponseData<boolean>>(`/dashboard/api/plg/ido/game/share`, {
-      twitterUserId,
+      userId: store.accountInfo?.id,
       text: twitterId
     }).then((res) => {
       if (res.data.code === 0) {
@@ -279,8 +278,7 @@ export default function AirdropIndex() {
   // 评论
   const FnComment = (twitterUserId: string | undefined) => {
     axios.post<IResponseData<boolean>>(`/dashboard/api/plg/ido/game/clickComment`, {
-      twitterId: twitterId,
-      twitterUserId
+      userId: store.accountInfo?.id
     }).then((res) => {
       window.open((store.accountInfo?.replyUrl + twitterId) || '')
     }).catch((error: any) => {
@@ -290,8 +288,7 @@ export default function AirdropIndex() {
   // 评论奖励
   const FnCommentReward = (twitterUserId: string | undefined, id: any) => {
     axios.post<IResponseData<boolean>>(`/dashboard/api/plg/ido/game/comment`, {
-      twitterUserId,
-      twitterId: twitterId
+      userId: store.accountInfo?.id
     }).then((res) => {
       if (res.data.code === 0) {
         Notice.Success({ title: 'Received successfully' })
@@ -311,8 +308,7 @@ export default function AirdropIndex() {
     if (store.accountInfo) {
       // window.open(`${rePostUrl + twitterId}`)
       axios.post<IResponseData<boolean>>(`/dashboard/api/plg/ido/game/clickLike`, {
-        twitterId: twitterId,
-        twitterUserId: store.accountInfo?.twitterId
+        userId: store.accountInfo?.id
       }).then((res) => {
         window.open(`https://twitter.com/intent/like?tweet_id=${twitterId}`)
       }).catch((error: any) => {
@@ -323,8 +319,7 @@ export default function AirdropIndex() {
   // 点赞奖励
   const FnLikeReward = (twitterUserId: string | undefined, id: any) => {
     axios.post<IResponseData<boolean>>(`/dashboard/api/plg/ido/game/like`, {
-      twitterUserId,
-      twitterId: twitterId
+      userId: store.accountInfo?.id
     }).then((res) => {
       if (res.data.code === 0) {
         Notice.Success({ title: 'Received successfully' })
@@ -342,7 +337,7 @@ export default function AirdropIndex() {
   const setEmail = (email: string | undefined, id: any) => {
     axios.post<IResponseData<boolean>>(`/dashboard/api/plg/ido/game/email`, {
       email,
-      twitterId: store.accountInfo?.twitterId
+      userId: store.accountInfo?.id
     }).then((res) => {
       if (res.data.code === 0) {
         Notice.Success({ title: 'Received successfully' })
@@ -363,7 +358,7 @@ export default function AirdropIndex() {
       return
     }
     axios.post<IResponseData<boolean>>(`/dashboard/api/plg/ido/game/loginReward `, {
-      twitterUserId
+      userId: store.accountInfo?.id
     }).then((res) => {
       if (res.data.code === 0) {
         Notice.Success({ title: 'Received successfully' })
