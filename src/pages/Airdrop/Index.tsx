@@ -64,7 +64,7 @@ export default function AirdropIndex() {
   const contentList: ConentList[] = [
     {
       text: <Column alignItems={'flex-start'} gap='5px'>
-        Link your wallet and X profile
+        Link Your Wallet And X Profile
         {/* <Flex fontSize={theme.isH5 ? '10px' : '16px'}>
           {'(More than 3 fans can participate in the task)'}
         </Flex> */}
@@ -86,9 +86,9 @@ export default function AirdropIndex() {
       id: 2,
     },
     {
-      text: 'Forward this tweet',
+      text: 'Forward This Tweet',
       amount: 30000,
-      title: 'Forward this tweet',
+      title: 'Forward This Tweet',
       confirmText: `Retweet Rabbitgames Twitter to get more rewards`,
       BtnTextUp: 'Forward tweet',
       BtnTextDown: 'Claim rewards',
@@ -97,9 +97,9 @@ export default function AirdropIndex() {
       id: 3,
     },
     {
-      text: 'Comment on this tweet',
+      text: 'Comment On This Tweet',
       amount: 10000,
-      title: 'Comment on this tweet',
+      title: 'Comment On This Tweet',
       confirmText: `How much do you like Rabbitgames to express your love`,
       BtnTextUp: 'Comment on X',
       BtnTextDown: 'Claim rewards',
@@ -108,9 +108,9 @@ export default function AirdropIndex() {
       id: 4,
     },
     {
-      text: 'Like this tweet',
+      text: 'Like This Tweet',
       amount: 10000,
-      title: 'Like this tweet',
+      title: 'Like This Tweet',
       confirmText: `If you like Rabbitgames, give them your blessings`,
       BtnTextUp: 'Like on X',
       BtnTextDown: 'Claim rewards',
@@ -119,7 +119,7 @@ export default function AirdropIndex() {
       id: 5,
     },
     {
-      text: 'Leave your email account',
+      text: 'Leave Your Email Account',
       amount: 20000,
       title: 'Email',
       confirmText: `Leave your email to facilitate Rabbitgames airdrop distribution`,
@@ -442,7 +442,7 @@ export default function AirdropIndex() {
             <img src={airdropTopBg} alt='' />
           </div>
           <div className='leftDesc'>
-            <Title><span>Receive free</span> airdrop rewards</Title>
+            <Title><span>Receive Free</span> Airdrop Rewards</Title>
             <Toggle vIf={theme.isH5}>
               <div className='line_chart'>
                 <div className='flex_row'>
@@ -481,7 +481,7 @@ export default function AirdropIndex() {
             </Toggle>
           </div>
           <div className="rightBox">
-            <div className="title">My points</div>
+            <div className="title">My Points</div>
             <div className="description">Claim airdrop rewards on December 16th</div>
             <div className="rewardAmount">{userRewards?.amount || '--'}</div>
             {/* <div className="button">Receive</div> */}

@@ -317,7 +317,7 @@ Introduce innovative games featuring unique game elements and mechanisms, thus b
           <PartnerButton className='row'>
             {/* <span dangerouslySetInnerHTML={{ __html: ORDI || '' }} /> */}
             <img src={AXLE1} alt='' />
-            <p>AXLE</p>
+            <p>AXIE</p>
           </PartnerButton>
           <PartnerButton className='row'>
             <img src={UNISAT} alt='' />

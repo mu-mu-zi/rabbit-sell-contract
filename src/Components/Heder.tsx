@@ -52,7 +52,7 @@ export default function HeaderNav() {
             // 切换钱包的时候需要把推特信息清空
             dispatch(setAccountInfo(undefined))
             localStorage.removeItem('accountInfo')
-          }  
+          }
         );
           unisat.on("networkChanged", handleAccountsChanged);
         }
@@ -134,7 +134,7 @@ export default function HeaderNav() {
 
 
 
-  
+
   return <NavWrap>
     <NavTop>
       <LogoGroup
@@ -153,7 +153,7 @@ export default function HeaderNav() {
             <RouterLink  to={"/airdrop"} className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} >Airdrop</RouterLink>
           </div>
           <div >
-            <RouterLink style={{ pointerEvents: 'none', color: '#686868' }} to={"/Development"} className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`} >Under Development</RouterLink>
+            <a style={{  }} href={"https://medium.com/@rabbitgames"} target={"_blank"} className={`nav-item`} >BLOG</a>
           </div>
         </UlHref>
 
