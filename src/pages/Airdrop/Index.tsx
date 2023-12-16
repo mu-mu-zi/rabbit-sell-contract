@@ -374,10 +374,15 @@ export default function AirdropIndex() {
   }
 
   const click = async (item: ConentList) => {
-
-    if (!localStorage.getItem(SessionStorageKey.WalletAuthorized)) {
+    // 判断网络
+    if(store.network !== 'Bitcoin') {
+      Notice.Warning({ title: 'Please switch to the correct network' })
+      return
+    }
+    // 判断是否连接钱包
+    if(!store.walletAddress) {
       Notice.Warning({ title: 'Please connect the wallet first' })
-      return;
+      return
     }
     if (!store.accountInfo?.id) {
       await getXaddress()
@@ -435,7 +440,7 @@ export default function AirdropIndex() {
 
   return (
     <AirdropWrap>
-      <HeaderNav />
+      {/* <HeaderNav /> */}
       <AirdropTopBG>
         <TopContent>
           <div className='airRabbitBg'>
@@ -482,7 +487,7 @@ export default function AirdropIndex() {
           </div>
           <div className="rightBox">
             <div className="title">My Points</div>
-            <div className="description">Claim airdrop rewards on December 16th</div>
+            <div className="description">To Be Announced</div>
             <div className="rewardAmount">{userRewards?.amount || '--'}</div>
             {/* <div className="button">Receive</div> */}
           </div>

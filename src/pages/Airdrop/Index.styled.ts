@@ -81,6 +81,7 @@ export const TopContent = styled.div`
       display: flex;
       flex-direction: column;
       gap: 6px;
+      z-index: 1;
       ${({ theme }) => theme.mediaWidth.sm`
         flex-direction: row;
         gap: 10px;
@@ -118,7 +119,7 @@ export const TopContent = styled.div`
 
     background: url("${test}");
     background-size: 100% 100%;
-
+    min-width: 338px;
     display: flex;
     flex-direction: column;
     height: fit-content;
@@ -133,7 +134,7 @@ export const TopContent = styled.div`
            margin-top: 52px;
            margin-right: 0;
            margin-left: 16px;
-           width: 187px;
+           min-width: 226px;
            padding: 18px 0 21px 11px;
       `}
     .title {

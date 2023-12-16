@@ -5,11 +5,11 @@ import topBgH5 from "../../assets/img/game/game_top_bg_h5.png"
 export const GameWrap = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: calc( 100vh - 80px );
   background: #000;
   ${({ theme }) => theme.mediaWidth.sm`
     min-height: initial;
-    height: 100vh;
+    height: calc( 100vh - 40px );
   `}
 @supports (-webkit-touch-callout: none) {
   height: -webkit-fill-available;
@@ -37,7 +37,7 @@ export const Content = styled.div`
 
 export const GameTopBG = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   background: url(${topBg}) no-repeat;
   background-size: cover;
@@ -45,7 +45,7 @@ export const GameTopBG = styled.div`
   min-height: 186px;
   ${({ theme }) => theme.mediaWidth.sm`
   min-height: 106px;
-  background: url(${topBgH5}) no-repeat;
+  background: url(${topBgH5}) no-repeat center;
   `}
 `
 
@@ -53,14 +53,12 @@ export const Title = styled.div`
   color: #FFF;
   font-size: 45px;
   font-weight: 800;
-  margin-bottom: 28px;
   & span {
     color: #FF9231;
   }
   ${({ theme }) => theme.mediaWidth.sm`
   font-size: 18px;
   font-weight: 800;
-  margin-bottom: 17px;
   `}
 `
 

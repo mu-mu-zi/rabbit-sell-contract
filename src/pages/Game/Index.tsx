@@ -12,6 +12,9 @@ import PtoSign from './PtoSign.png'
 import Toggle from '../../Components/Toggle/Toggle';
 import { useTheme } from 'styled-components';
 import { IList, IResponseData } from '../../App';
+import Flex from '../../Components/Box/Flex';
+import Box from '../../Components/Box';
+import Column from '../../Components/Box/Column';
 
 interface GameList {
   "id": string,
@@ -104,12 +107,37 @@ export default function GameIndex() {
 
   return (
     <GameWrap>
-      <HeaderNav />
+      {/* <HeaderNav /> */}
       <GameTopBG>
-        <Title>
-          <span>Hot </span>
-          Games
-        </Title>
+        <Column
+          gap={theme.isH5 ? '10px': '22px'}
+          width={theme.isH5 ? '375px': '1200px'}
+          margin={'0 auto'}
+          paddingLeft={'15px'}
+        >
+
+          <Title>
+            <span>Hot </span>
+            Games
+          </Title>
+          <Flex
+            as={'a'}
+            href='http://download.blockwin.in/'
+            target='_blank'
+            alignItems={'center'}
+            justifyContent={'center'}
+            cursor={'pointer'}
+            background={'#FF9231'}
+            fontSize={theme.isH5 ? '12px' : '13px'}
+            fontWeight={700}
+            width={theme.isH5 ? '100px' : '175px'}
+            borderRadius={'100px'}
+            height={theme.isH5 ? '20px' : '35px'}
+            color='#fff'
+          >
+            Download
+          </Flex>
+        </Column>
       </GameTopBG>
 
       <Content>

@@ -33,7 +33,9 @@ export const GlobalStyle = createGlobalStyle`
         outline: none;
         border: none;
     }
-    
+    .semi-modal {
+        line-height: normal;
+    }
     img {
         vertical-align: bottom;
     }
@@ -46,14 +48,48 @@ export const GlobalStyle = createGlobalStyle`
     body p {
         margin-bottom: 0;
     }
-    
+    * {
+    scrollbar-width: none; /* 隐藏滚动条 */
+    -ms-overflow-style: none; /* 隐藏 IE 和 Edge 浏览器中的滚动条 */
+  }
+    /* 在 Firefox 中控制滚动条的样式 */
+    *::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  /* 定义滚动条颜色为透明 */
+  *::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+
+  /* 隐藏滚动条按钮 */
+  *::-webkit-scrollbar-button {
+    display: none;
+  }
+  // -------
+  ::-webkit-scrollbar-thumb {
+    display: none !important;
+    background-color: transparent !important;
+  }
+
+  ::-webkit-scrollbar-button {
+    display: none !important;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0px !important;
+    height: 0px !important;
+  }
      /* Input type number hidden arrows (Chrome, Safari, Edge, Opera) */
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
-
+    :focus-visible {
+        outline: none;
+    }
   /* Input type number hidden arrows (Firefox) */
   input[type=number] {
     -moz-appearance: textfield;

@@ -1,11 +1,14 @@
 import React from 'react';
 import {
-  About, ButtonGrounp, ConnectWalletButton, ContentBox,
-  Game, LightningNetwork, LogoGroup, NavTop,
-  NavWrap, RightUl, UlHref, Vision, AboutFlex, LightningNetworkColumn, Title, VisionColumn, SignButton, VisionBox, GameBox, Distribution, DistributionFlex, DistributionButton, Roadmap, RoadmapColumn, StoryLine, Mission, MissionColumn, PartnerColumn, Partner, BottomBG, PartnerButton
+  About, ContentBox,
+  Game, LightningNetwork,
+  Vision, AboutFlex, LightningNetworkColumn, Title, VisionColumn,
+  GameBox, Distribution, DistributionFlex, DistributionButton, Roadmap,
+  RoadmapColumn, StoryLine, Mission, MissionColumn, PartnerColumn,
+  Partner, BottomBG, PartnerButton
 } from './HomeIndex.styled';
 import logo from '../../assets/img/logo.png'
-import { TgSvgIcon, XSvgIcon, RdSvgIcon, LineIcon, AXLE, BINAIcon, BTCIcon, ETHIcon, GALAIcon, OKXIcon, ORDIIcon } from '../../utils/svgManage';
+import { LineIcon } from '../../utils/svgManage';
 import Rabbit from '../../assets/img/Rabbit.png'
 import SMRabbit from '../../assets/img/SMRabbit.png'
 import nft from '../../assets/img/nft.png'
@@ -19,7 +22,7 @@ import distributionPng from '../../assets/img/distribution_png.png'
 import lineBg1 from '../../assets/img/line_bg1.png'
 import lineBg2 from '../../assets/img/line_bg2.png'
 import lineRabbit from '../../assets/img/line_rabbit.png'
-import visionBg from '../../assets/img/Vision_bg.png'
+import visionBg from '../../assets/img/vision_bg.png'
 import missionBg from '../../assets/img/Mission.png'
 import banner1 from '../../assets/img/banner_1.png'
 import banner2 from '../../assets/img/banner_2.png'
@@ -62,27 +65,27 @@ export default function HomeIndex() {
 
   // 饼图列表
   const chartsList = [
-    { img: charts1, text: 'Ecological'},
-    { img: charts2, text: 'Liquidity'},
-    { img: charts3, text: 'Mining'},
-    { img: charts4, text: 'Team'},
-    { img: charts5, text: 'Fair Launch'},
-    { img: charts6, text: 'Angel Investment'},
+    { img: charts1, text: 'Ecological' },
+    { img: charts2, text: 'Liquidity' },
+    { img: charts3, text: 'Mining' },
+    { img: charts4, text: 'Team' },
+    { img: charts5, text: 'Fair Launch' },
+    { img: charts6, text: 'Angel Investment' },
   ]
 
   return (
-    <div style={{background: '#000'}}>
-      <HeaderNav />
+    <div style={{ background: '#000' }}>
+      {/* <HeaderNav /> */}
       <About id="about">
         <ContentBox>
           <AboutFlex>
             <div className='text_right'>
               <div className='text_38'>
-              Rabbit, a <span className='orig'>Bitcoin-based</span> gaming platform
+                Rabbit, a <span className='orig'>Bitcoin-based</span> gaming platform
               </div>
 
               <div className='text_26'>
-              Rabbit is a revolutionary Bitcoin ecosystem gaming platform, striving to deliver our users a secure,  scalable, and exceptional online gaming experience. Our commitment is to craft an entertainment haven rooted in community and ownership, which encourages users to actively engage and revel in the joy of gaming. As a driving force in community development, we are pioneers who define and lead the new landscape of Web3 entertainment. Join us, unlock infinitive possibilities, and let's co-create a unique and exhilarating gaming universe!
+                Rabbit is a revolutionary Bitcoin ecosystem gaming platform, striving to deliver our users a secure,  scalable, and exceptional online gaming experience. Our commitment is to craft an entertainment haven rooted in community and ownership, which encourages users to actively engage and revel in the joy of gaming. As a driving force in community development, we are pioneers who define and lead the new landscape of Web3 entertainment. Join us, unlock infinitive possibilities, and let's co-create a unique and exhilarating gaming universe!
               </div>
 
             </div>
@@ -107,9 +110,9 @@ export default function HomeIndex() {
             </Toggle>
 
             <div className='text'>
-             <div>
-             Rabbit is dedicated to constructing a blockchain-based ecosystem, with Rait as the utility token that is actively involved in the platform’s network governance. This token empowers users with the right to construct and own, facilitating the sale of their in-game models and items. The mechanism’s goal is to foster a more open, sustainable, and user-engaging gaming environment. With the convenience, our players are provided with more opportunities to create, own, and trade digital assets.
-             </div>
+              <div>
+                Rabbit is dedicated to constructing a blockchain-based ecosystem, with Rait as the utility token that is actively involved in the platform’s network governance. This token empowers users with the right to construct and own, facilitating the sale of their in-game models and items. The mechanism’s goal is to foster a more open, sustainable, and user-engaging gaming environment. With the convenience, our players are provided with more opportunities to create, own, and trade digital assets.
+              </div>
             </div>
 
           </LightningNetworkColumn>
@@ -160,14 +163,14 @@ export default function HomeIndex() {
             <div className='distribution_charts'>
               {
                 chartsList.map((item, index) => {
-                  return    <Column
+                  return <Column
                     width={theme.isH5 ? '74px' : '108px'}
                     gap='24px'
                     alignItems={'center'}
                   >
-                  <div className='charts_circle'><img src={item.img} alt='' /></div>
-                  <div className='charts_text'>{item.text}</div>
-                </Column>
+                    <div className='charts_circle'><img src={item.img} alt='' /></div>
+                    <div className='charts_text'>{item.text}</div>
+                  </Column>
                 })
               }
             </div>
@@ -185,7 +188,7 @@ export default function HomeIndex() {
       </Distribution>
 
       <Roadmap id="Roadmap">
-        <ContentBox style={{maxWidth: '1300px'}}>
+        <ContentBox style={{ maxWidth: '1300px' }}>
           <RoadmapColumn>
             <Title>Rabbit Platform <span>Roadmap</span></Title>
             <div className='bg1'>
@@ -202,24 +205,24 @@ export default function HomeIndex() {
 
               <div className='grid-3'>
                 <div className='content-left'>
-                  <div className='title'>Infrastructure Construction (Q2 2022)</div>
+                  <div className='title'>Infrastructure Construction (Q2 2023)</div>
                   <div className='text'>Establish a robust blockchain infrastructure for enhanced security and scalability.
-Launch Rait tokens and introduce our network governance mechanisms, empowering users in platform decision-making.</div>
+                    Launch Rait tokens and introduce our network governance mechanisms, empowering users in platform decision-making.</div>
                 </div>
                 <div className='icons'>
-                <span dangerouslySetInnerHTML={{ __html: LineIcon || '' }} />
+                  <span dangerouslySetInnerHTML={{ __html: LineIcon || '' }} />
                 </div>
                 <div></div>
               </div>
               <div className='grid-3'>
                 <div></div>
                 <div className='icons'>
-                <span dangerouslySetInnerHTML={{ __html: LineIcon || '' }} />
+                  <span dangerouslySetInnerHTML={{ __html: LineIcon || '' }} />
                 </div>
                 <div className='content'>
                   <div className='title'>Game Diversity and Innovation (Q3 2023)</div>
                   <div className='text'>Release games spanning various types and themes to cater to diverse player interests.
-Introduce innovative games featuring unique game elements and mechanisms, thus bringing players a real fresh gaming experience.</div>
+                    Introduce innovative games featuring unique game elements and mechanisms, thus bringing players a real fresh gaming experience.</div>
                 </div>
               </div>
               <div className='grid-3'>
@@ -228,14 +231,14 @@ Introduce innovative games featuring unique game elements and mechanisms, thus b
                   <div className='text'>Develop a powerful community platform to foster interaction and communication among players. Implement a community reward plan to motivate users to actively contribute to platform development as part of it, creating a lively and vibrant community collaboratively.</div>
                 </div>
                 <div className='icons'>
-                <span dangerouslySetInnerHTML={{ __html: LineIcon || '' }} />
+                  <span dangerouslySetInnerHTML={{ __html: LineIcon || '' }} />
                 </div>
                 <div></div>
               </div>
               <div className='grid-3'>
                 <div></div>
                 <div className='icons'>
-                <span dangerouslySetInnerHTML={{ __html: LineIcon || '' }} />
+                  <span dangerouslySetInnerHTML={{ __html: LineIcon || '' }} />
                 </div>
                 <div className='content'>
                   <div className='title'>Digital Asset Ecology (Q4 2024)</div>
@@ -246,7 +249,7 @@ Introduce innovative games featuring unique game elements and mechanisms, thus b
               <div className='grid-3'>
                 <div></div>
                 <div className='icons'>
-                <span dangerouslySetInnerHTML={{ __html: LineIcon || '' }} />
+                  <span dangerouslySetInnerHTML={{ __html: LineIcon || '' }} />
                 </div>
                 <div className='content'>
                   <div className='title'>Global Expansion and Cooperation (Q2 2025)</div>
@@ -257,7 +260,7 @@ Introduce innovative games featuring unique game elements and mechanisms, thus b
               <div className='grid-3'>
                 <div></div>
                 <div className='icons'>
-                <span dangerouslySetInnerHTML={{ __html: LineIcon || '' }} />
+                  <span dangerouslySetInnerHTML={{ __html: LineIcon || '' }} />
                 </div>
                 <div className='content'>
                 </div>
@@ -274,7 +277,7 @@ Introduce innovative games featuring unique game elements and mechanisms, thus b
             <Title>Vision</Title>
             <div className='text'>
               <div className='float'>
-              Our vision is to become a global leading blockchain gaming platform with diversified products and community, connecting our players, inspiring shared passion, and unleashing creativity with innovative and diverse gaming experiences. We are committed to creating a digital entertainment paradise, bringing impetus to the growth of the blockchain gaming industry and offering players unparalleled joy and interactive experiences.
+                Our vision is to become a global leading blockchain gaming platform with diversified products and community, connecting our players, inspiring shared passion, and unleashing creativity with innovative and diverse gaming experiences. We are committed to creating a digital entertainment paradise, bringing impetus to the growth of the blockchain gaming industry and offering players unparalleled joy and interactive experiences.
               </div>
             </div>
             <div>
@@ -285,68 +288,68 @@ Introduce innovative games featuring unique game elements and mechanisms, thus b
       </Vision>
 
       <Mission>
-      <ContentBox>
-        <MissionColumn>
-        <Title>Mission</Title>
-        <div className='imgbg'>
-          <img src={missionBg} alt='' />
-        </div>
-        <div className='floatBox'>
-        Our ultimate mission is to help our players find a tailored entertainment paradise on the Rabbit platform after experiencing diverse game content and innovative gameplay. We strive to build a social and creative ecosystem that pushes the boundaries of the digital entertainment experience. We invite users to be part of the platform’s decision-making, working together to create a vibrant and thriving gaming community.
-        </div>
-        </MissionColumn>
-      </ContentBox>
+        <ContentBox>
+          <MissionColumn>
+            <Title>Mission</Title>
+            <div className='imgbg'>
+              <img src={missionBg} alt='' />
+            </div>
+            <div className='floatBox'>
+              Our ultimate mission is to help our players find a tailored entertainment paradise on the Rabbit platform after experiencing diverse game content and innovative gameplay. We strive to build a social and creative ecosystem that pushes the boundaries of the digital entertainment experience. We invite users to be part of the platform’s decision-making, working together to create a vibrant and thriving gaming community.
+            </div>
+          </MissionColumn>
+        </ContentBox>
       </Mission>
 
       <Partner>
 
-      <ContentBox>
-        <PartnerColumn>
-        <Title>Ecological <span>Partner</span></Title>
-        <div className='flex-row'>
-          <PartnerButton className='row'>
-            {/* <span dangerouslySetInnerHTML={{ __html: BTCIcon || '' }} />
+        <ContentBox>
+          <PartnerColumn>
+            <Title>Ecological <span>Partner</span></Title>
+            <div className='flex-row'>
+              <PartnerButton className='row'>
+                {/* <span dangerouslySetInnerHTML={{ __html: BTCIcon || '' }} />
             <p>OKX WALLET</p> */}
-            <img src={OKX} alt='' />
-            <p>OKX WALLET</p>
-          </PartnerButton>
-          <PartnerButton className='row'>
-            <img src={GALA} alt='' />
-            <p>GALA</p>
-          </PartnerButton>
-          <PartnerButton className='row'>
-            {/* <span dangerouslySetInnerHTML={{ __html: ORDI || '' }} /> */}
-            <img src={AXLE1} alt='' />
-            <p>AXIE</p>
-          </PartnerButton>
-          <PartnerButton className='row'>
-            <img src={UNISAT} alt='' />
-            <p>UNISAT</p>
-          </PartnerButton>
-          <PartnerButton className='row'>
-            {/* <span dangerouslySetInnerHTML={{ __html: OKXIcon || '' }} /> */}
-            <img src={TUR} alt='' />
-            <p>TURTSAT</p>
-          </PartnerButton>
-          <PartnerButton className='row'>
-            {/* <span dangerouslySetInnerHTML={{ __html: GALAIcon || '' }} /> */}
-            <img src={PORT} alt='' />
-            <p>PORT3</p>
-          </PartnerButton>
-          <PartnerButton className='row'>
-            {/* <span dangerouslySetInnerHTML={{ __html: AXLE || '' }} /> */}
-            <img src={BISO} alt='' />
-            <p>BISO SWAP</p>
-          </PartnerButton>
+                <img src={OKX} alt='' />
+                <p>OKX WALLET</p>
+              </PartnerButton>
+              <PartnerButton className='row'>
+                <img src={GALA} alt='' />
+                <p>GALA</p>
+              </PartnerButton>
+              <PartnerButton className='row'>
+                {/* <span dangerouslySetInnerHTML={{ __html: ORDI || '' }} /> */}
+                <img src={AXLE1} alt='' />
+                <p>AXIE</p>
+              </PartnerButton>
+              <PartnerButton className='row'>
+                <img src={UNISAT} alt='' />
+                <p>UNISAT</p>
+              </PartnerButton>
+              <PartnerButton className='row'>
+                {/* <span dangerouslySetInnerHTML={{ __html: OKXIcon || '' }} /> */}
+                <img src={TUR} alt='' />
+                <p>TURTSAT</p>
+              </PartnerButton>
+              <PartnerButton className='row'>
+                {/* <span dangerouslySetInnerHTML={{ __html: GALAIcon || '' }} /> */}
+                <img src={PORT} alt='' />
+                <p>PORT3</p>
+              </PartnerButton>
+              <PartnerButton className='row'>
+                {/* <span dangerouslySetInnerHTML={{ __html: AXLE || '' }} /> */}
+                <img src={BISO} alt='' />
+                <p>BISO SWAP</p>
+              </PartnerButton>
+            </div>
+          </PartnerColumn>
+        </ContentBox>
+        <div className='partner_bg'>
+          <img src={partnerBg} alt='' />
         </div>
-        </PartnerColumn>
-      </ContentBox>
-      <div className='partner_bg'>
-        <img src={partnerBg} alt='' />
-      </div>
-      <BottomBG />
+        <BottomBG />
       </Partner>
-    <Footer />
+      <Footer />
     </div>
   )
 }

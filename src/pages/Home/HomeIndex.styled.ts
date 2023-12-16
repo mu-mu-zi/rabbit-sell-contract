@@ -3,7 +3,7 @@ import AbountBg from '../../assets/img/about_bg.png'
 import LightningNetworkBg from '../../assets/img/LightningNetwork_bg.png'
 import GameBg from '../../assets/img/Game_bg.png'
 import DistributionBg from '../../assets/img/Distribution_bg.png'
-import VisionBg from '../../assets/img/Vision_bg.png'
+
 import SignPng from '../../assets/img/Sign_png.png'
 import distributionButton from '../../assets/img/distributionButton.png'
 import bottomBg from '../../assets/img/bottom_bg.png'
@@ -73,12 +73,22 @@ export const UlHref = styled.div`
 export const ButtonGrounp = styled.div`
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 24px ;
   ${({ theme }) => theme.mediaWidth.sm`
-    gap: 17px;
+    gap: 5px;
 
   `}
   & > span, svg {
+    ${({ theme }) => theme.mediaWidth.sm`
+      width: 18px;
+      height: 18px;
+  `}
+  .btn {
+    ${({ theme }) => theme.mediaWidth.sm`
+      width: 40px !important;
+  `}
+  }
+  & > .btn, svg {
     ${({ theme }) => theme.mediaWidth.sm`
       width: 18px;
       height: 18px;
