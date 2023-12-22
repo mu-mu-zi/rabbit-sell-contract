@@ -4,19 +4,54 @@ import { WalletHooks } from "../connectWallet/WalletsNetwork";
 import { SessionStorageKey } from "../Components/Heder";
 import { setWalletAddress } from "../store/app";
 import { useAppDispatch } from "./hooks";
+import abi from '../abi/abi.json'
 
 export default function useConnectMask():WalletHooks {
   const provider = (window as any).ethereum;
   const [account, setAccount] = useState<string>('');
   const dispatch = useAppDispatch()
+
   async function connectWallet() {
+    try {
+
+   
     console.log('aaaaaaa1123123')
-    const accounts = await provider.request({ method: 'eth_requestAccounts' });
+    const accounts = await provider.request({ 
+      method: 'eth_requestAccounts',
+      params: [{ chainId: '0x' + abi.chainid.toString(16) }]
+    });
     console.log('accounts', accounts)
     localStorage.setItem(SessionStorageKey.WalletAuthorized, accounts[0])
     dispatch(setWalletAddress(accounts[0]))
     setAccount(accounts[0])
     return accounts[0]
+  } catch(error:any) {
+    Notice.Error({title: 
+      JSON.parse(JSON.stringify(error)).reason 
+      || JSON.parse(JSON.stringify(error)).message
+      || 'error'
+    })
+  }
+  }
+  async function switchWallet() {
+    console.log('aaaaaaa1123123')
+    try {
+    const accounts = await provider.request({ 
+      method: 'wallet_switchEthereumChain',
+      params: [{chainId: '0x' + abi.chainid.toString(16)}]
+     });
+    console.log('accounts', accounts)
+  } catch(error:any) {
+    Notice.Error({title: 
+      JSON.parse(JSON.stringify(error)).reason 
+      || JSON.parse(JSON.stringify(error)).message
+      || 'error'
+    })
+  }
+    // localStorage.setItem(SessionStorageKey.WalletAuthorized, accounts[0])
+    // dispatch(setWalletAddress(accounts[0]))
+    // setAccount(accounts[0])
+    // return accounts[0]
   }
 
   async function getBalance() {
@@ -41,5 +76,6 @@ export default function useConnectMask():WalletHooks {
       }
     })(),
     connect: connectWallet,
+    switch: switchWallet,
   }
 }

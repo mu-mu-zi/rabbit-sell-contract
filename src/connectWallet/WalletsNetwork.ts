@@ -29,5 +29,6 @@ export type WalletHooks = {
     name: string
     haveWallet: boolean
     connect(): Promise<void>
+    switch?(): Promise<void>
 }
 

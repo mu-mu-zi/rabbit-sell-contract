@@ -10,6 +10,9 @@ export default function useConnectUniset():WalletHooks {
   const [account, setAccount] = useState<string>('');
   const dispatch = useAppDispatch()
   async function connectWallet() {
+    try {
+
+  
     console.log('aaaaaaa1123123')
     const accounts = await unisat.requestAccounts();
     console.log('accounts', accounts)
@@ -17,6 +20,13 @@ export default function useConnectUniset():WalletHooks {
     dispatch(setWalletAddress(accounts[0]))
     setAccount(accounts[0])
     return accounts[0]
+  } catch(error:any) {
+    Notice.Error({title: 
+      JSON.parse(JSON.stringify(error)).reason 
+      || JSON.parse(JSON.stringify(error)).message
+      || 'error'
+    })
+  }
   }
   async function getBalance() {
     console.log('aaaaaaa1123123')
@@ -40,7 +50,6 @@ export default function useConnectUniset():WalletHooks {
         return false
       }
     })(),
-    connect: connectWallet,
-    
+    connect: connectWallet,    
   }
 }

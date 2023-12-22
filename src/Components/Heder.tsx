@@ -16,7 +16,7 @@ import useConnect from '../hook/useConnect';
 import { usePluginModel } from '../hook/usePluginModel';
 import { ModalContext } from './ModalContext/ModalContext';
 import ConnectModal, { ConnectModalProps } from './Modal/ConnectModal';
-
+import abi from '../abi/abi.json'
 
 export enum SessionStorageKey {
   WalletAuthorized = "WALLET_AUTHORIZED",
@@ -36,16 +36,21 @@ export default function HeaderNav() {
 
 
   useEffect(() => {
-    if(store.network === 'Ethereum' && store.walletAddress) { 
+    if(store.network === 'Ethereum' && store.walletAddress) {
       project.on('accountsChanged', (accounts: string[]): void => {
         console.log("opera wallet change accounts: ", accounts)
         currentHooks.connect()
         // this.actions.update({ accounts })
       })
-      // project.on('chainChanged', (chainId: string): void => {
-      //   console.log("opera wallet chainId change: ", Number.parseInt(chainId, 16))
-      //   currentHooks.connect()
-      // })
+      project.on('chainChanged', (chainId: string): void => {
+        console.log("opera wallet chainId change: ", Number.parseInt(chainId, 16))
+        if(Number.parseInt(chainId, 16) !== abi.chainid ) {
+
+          if(currentHooks.switch) {
+            currentHooks.switch()
+          }
+        }
+      })
     }
 }, [store.network, project])
   useEffect(() => {

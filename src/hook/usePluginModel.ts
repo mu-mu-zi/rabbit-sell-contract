@@ -18,7 +18,7 @@ type IApprove = {
 }
 
 type IBuy = {
-    amount: string,
+    amount: any,
     quantity: number,
     tokenId: number,
     deadline: number,
@@ -176,14 +176,14 @@ export function usePluginModel() {
         });
     }
 
-    async function getTokenBalance(account: string, address: string): Promise<number> {
-        let contract = NewReadContract(address, abi.contracts.RAIT.abi);
+    async function getTokenBalance(account: string): Promise<string> {
+        let contract = NewReadContract(abi.contracts.RAIT.address, abi.contracts.RAIT.abi);
 
         let [balance, decimals] = await Promise.all([
             contract.balanceOf(account),
             contract.decimals(),
         ]);
-        return Decimal.div(balance.toString(), Math.pow(10, decimals)).toNumber();
+        return Decimal.div(balance.toString(), Math.pow(10, decimals)).toFixed();
     }
 
     // 查询所有的nft tokenId
@@ -247,11 +247,12 @@ export function usePluginModel() {
     async function buyNft(params: IBuy, ethVal: string): Promise<any> {
         console.log( ethVal , params, 'bba')
         console.log( 'eth',getInput(ethVal, 0).toString())
-        console.log( 'amount',getInput(params.amount, 0).toString())
+        console.log(new Decimal(params.amount).toFixed())
+        console.log( 'testtesttest',getInput(new Decimal(params.amount).toFixed(), 0).toString())
         return new Promise(async (resolve, reject) => {
             let contract = NewWriteContract(abi.contracts.blindBox.address, abi.contracts.blindBox.abi);
             contract.buy(
-                getInput(params.amount, 0),
+                getInput(new Decimal(params.amount).toFixed(), 0),
                 params.quantity,
                 params.tokenId,
                 params.deadline,

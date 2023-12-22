@@ -52,13 +52,14 @@ export default function NFTBox() {
   const theme = useTheme();
   const [time, setTime] = useState<Timer>();
   const [endTime, setEndTime] = useState<number>(0);
+  // true 表示倒计时已经过去， false表示倒计时还没走完
   const [isOverTime, setIsOverTime] = useState<boolean>(true);
   const [iptVal, setIptVal] = useState<number>(1)
   const [tokenId, setTokenId] = useState<number>(0)
   const [remainNum, setRemainNum] = useState<number>() // 盲盒剩余数量
   const [myReward, setMyReward] = useState<BigNumber[]>([])
   const [priceObj, setPriceObj] = useState<{ ethPrice: string, tokenPrice: string }>()
-  const { buyNft, getPrice, checkHashStatus, getEndTime, getMyReward, getReward, getCurrTokenId } = usePluginModel()
+  const { buyNft, getPrice, checkHashStatus, getEndTime, getMyReward, getReward, getCurrTokenId, getTokenBalance } = usePluginModel()
   const [isOpenAir, setIsOpenAir] = useState<boolean>(false);
   // 提取中
   const [isGetingRewrad, setIsGetingRewrad] = useState<boolean>(false)
@@ -72,6 +73,12 @@ export default function NFTBox() {
   async function getPriceFn() {
     const price = await getPrice()
     setPriceObj(price)
+  }
+  async function getTokenBalanceFn() {
+    const tokenBalance = await getTokenBalance(store.walletAddress)
+    console.log(tokenBalance)
+    return tokenBalance
+    // setPriceObj(tokenBalance)
   }
   async function getRemainingFn() {
     const rNum = await getCurrTokenId()
@@ -90,8 +97,8 @@ export default function NFTBox() {
   useEffect(() => {
     getPriceFn()
     getRemainingFn()
+    getEndTimeFn()
     if(store.walletAddress && store.network === 'Ethereum') {
-      getEndTimeFn()
       getMyRewardFn()
     } else {
       setMyReward([])
@@ -108,8 +115,12 @@ export default function NFTBox() {
     const time = await getEndTime()
     console.log(time)
     console.log(time.toString())
+    const testTime = 1703070000000
     // const testTime = new Date().getTime() + 1000 * 10
-    setEndTime(new Decimal(time.toString()).times(1000).toNumber())
+    // setEndTime(new Decimal(time.toString()).times(1000).toNumber())
+
+    // setEndTime(new Decimal(time.toString()).times(1000).toNumber())
+    setEndTime(testTime)
   }
 
   useEffect(() => {
@@ -192,8 +203,14 @@ export default function NFTBox() {
   // 抢购NFT
   const onBuyNft = async () => {
     console.log(isOverTime)
-    if(!isOverTime) {
-      Notice.Warning({ title: 'rush buying hasn’t started yet' })
+    // if(!isOverTime) {
+    //   // 倒计时内逻辑
+    //   Notice.Warning({ title: 'rush buying hasn’t started yet' })
+    //   return
+    // }
+    if(isOverTime) {
+      // 倒计时已经到了
+      Notice.Warning({ title: 'The event is over' })
       return
     }
     if (!priceObj) {
@@ -211,8 +228,16 @@ export default function NFTBox() {
       Notice.Warning({ title: 'Please connect the wallet first' })
       return
     }
-
-
+    // 判断余额是否足够
+    const raitBalance = await getTokenBalanceFn()
+    console.log(raitBalance)
+    console.log(priceObj.tokenPrice)
+    const isNef = new Decimal(priceObj.tokenPrice).div(10 ** 18).lt(raitBalance) // lt => <
+    if(!isNef) {
+      Notice.Warning({ title: 'Not enough rait coins' })
+      return
+    }
+    console.log(isNef)
     if (!iptVal) {
       Notice.Warning({ title: 'Please enter the purchase quantity' })
       return
@@ -234,10 +259,10 @@ export default function NFTBox() {
       return;
     }
 
-    const amount = new Decimal(iptVal).times(priceObj.tokenPrice).toString()
+    const amount = new Decimal(iptVal).times(priceObj.tokenPrice)
     const ethAmount = new Decimal(iptVal).times(priceObj.ethPrice).toString()
     const tokenId = (result.randNum - result.deadline) - 1000
-
+    // console.log('testtesttest', amount)
     setTokenId(tokenId)
     const buyResult = await buyNft({
       amount: amount,
@@ -312,7 +337,7 @@ export default function NFTBox() {
           <Column gap='20px' justifyContent={'center'} fontSize={theme.isH5 ? "11px" : "16px"}>
             <Flex gap='31px'>
               <Typography minWidth={theme.isH5 ? '110px' : '160px'}>Remaining Amount</Typography>
-              <Typography textAlign={'left'} fontWeight={700} color='#D87319'>{remainNum || '-'}</Typography>
+              <Typography textAlign={'left'} fontWeight={700} color='#D87319'>{isOverTime ? 0 : remainNum || '-'}</Typography>
             </Flex>
             <Flex gap='31px'>
               <Typography minWidth={theme.isH5 ? '110px' : '160px'}>Purchase Price</Typography>
@@ -346,7 +371,8 @@ export default function NFTBox() {
         <Toggle vIf={!isOverTime}>
 
           <Flex fontSize={theme.isH5 ? '13px' : '20px'} mt={theme.isH5 ? '14px' : '44px'}>
-            Countdown To Buying:
+            {/* Countdown To Buying: */}
+            Event end time:
             {
               time && Object.values(time).map((item, index) => {
                 return <Flex key={index}>
@@ -443,7 +469,7 @@ export default function NFTBox() {
 
                   <img src={fangkuai} alt='' />
                 </Flex>
-                <Typography>1. Hold NFT airdrop RAIT tokens</Typography>
+                <Typography>1. Hold NFT airdrop</Typography>
               </Flex>
               <Flex alignItems={'baseline'} gap={theme.isH5 ? "12px" : '14px'} fontSize={theme.isH5 ? "14px" : '20px'}>
                 <Flex>
@@ -466,13 +492,13 @@ export default function NFTBox() {
                 </Flex>
                 <Typography> 4. Hold NFT and enjoy tokens and NFT airdrops for new games on the Rabbitgame platform</Typography>
               </Flex>
-              <Flex alignItems={'baseline'} gap={theme.isH5 ? "12px" : '14px'} fontSize={theme.isH5 ? "14px" : '20px'}>
+              {/* <Flex alignItems={'baseline'} gap={theme.isH5 ? "12px" : '14px'} fontSize={theme.isH5 ? "14px" : '20px'}>
                 <Flex>
 
                   <img src={fangkuai} alt='' />
                 </Flex>
                 <Typography> 5. Hold NFT and enjoy the airdrop of game token RAITS</Typography>
-              </Flex>
+              </Flex> */}
               <Flex alignItems={'baseline'} gap={theme.isH5 ? "12px" : '14px'} fontSize={theme.isH5 ? "14px" : '20px'}>
                 <Box width='32px' />
 
