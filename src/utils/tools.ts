@@ -4,6 +4,7 @@ interface QueryParams {
   [key: string]: string;
 }
 
+// 获取地址栏的参数
 export function getQueryParams (url:string) {
   const queryParams:QueryParams = {};
   const paramsString = url.split('?')[1];

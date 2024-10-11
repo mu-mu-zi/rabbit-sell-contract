@@ -143,7 +143,7 @@ export default function AirdropIndex() {
 
   useEffect(() => {
     console.log('aaaa', store.accountInfo)
-    if(store.walletAddress) {
+    if (store.walletAddress) {
 
       getUserRewards()
     }
@@ -180,7 +180,7 @@ export default function AirdropIndex() {
       code,
       state
     }).then((res) => {
-      if(res.data.code === 0 ) {
+      if (res.data.code === 0) {
 
         console.log('aaaa', res)
         localStorage.setItem('accountInfo', JSON.stringify(res.data.data))
@@ -192,7 +192,7 @@ export default function AirdropIndex() {
         dispatch(setWalletAddress(''))
         // 清空url参数
         window.history.replaceState({}, document.title, window.location.pathname);
-        Notice.Error({title: 'address or X account are bound'})
+        Notice.Error({ title: 'address or X account are bound' })
       }
     }).catch((error: any) => {
       console.log(error)
@@ -354,7 +354,7 @@ export default function AirdropIndex() {
 
   // 登录奖励
   const FnLinkReward = (twitterUserId: string | undefined) => {
-    if(!store.accountInfo?.id) {
+    if (!store.accountInfo?.id) {
       return
     }
     axios.post<IResponseData<boolean>>(`/dashboard/api/plg/ido/game/loginReward `, {
@@ -374,13 +374,17 @@ export default function AirdropIndex() {
   }
 
   const click = async (item: ConentList) => {
+    // 结束
+    // Notice.Info({ title: 'Mission ended' })
+    // return
+
     // 判断网络
-    if(store.network !== 'Bitcoin') {
+    if (store.network !== 'Bitcoin') {
       Notice.Warning({ title: 'Please switch to the correct network' })
       return
     }
     // 判断是否连接钱包
-    if(!store.walletAddress) {
+    if (!store.walletAddress) {
       Notice.Warning({ title: 'Please connect the wallet first' })
       return
     }
@@ -389,7 +393,7 @@ export default function AirdropIndex() {
     }
     if (item.type === ModalType.Link) {
       // 判断是否超过5个粉丝 再领取奖励
-      if (userRewards && !userRewards.tasks?.some(data => data.taskId === 1))
+      if (userRewards && !userRewards?.tasks?.some(data => data.taskId === 1))
         FnLinkReward(store.accountInfo?.twitterId)
       return;
     };
